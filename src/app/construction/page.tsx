@@ -44,7 +44,7 @@ export default function UnderConstructionPage() {
               Don&apos;t want to wait?
             </h3>
             <a
-              href="mailto:info@m2e.ai"
+              href="/contact"
               className="inline-block w-full py-2.5 px-4 rounded-lg border border-[#00BCD4] text-[#00BCD4] text-sm font-medium hover:bg-[#00BCD4] hover:text-black transition-colors"
             >
               Get in touch →
@@ -62,7 +62,7 @@ export default function UnderConstructionPage() {
           <a href="/privacy" className="hover:text-neutral-400 transition-colors">
             Privacy Policy
           </a>
-          <span>&copy; 2026 Memes to an End</span>
+          <a href="/" className="hover:text-neutral-400 transition-colors">&copy; 2026 Memes to an End</a>
         </div>
       </div>
     </div>
