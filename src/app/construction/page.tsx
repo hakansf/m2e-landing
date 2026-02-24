@@ -42,7 +42,7 @@ export default function UnderConstructionPage() {
               Schedule a Call
             </h3>
             <a
-              href="mailto:hakan@m2e.ai"
+              href="mailto:info@m2e.ai"
               className="inline-block w-full py-2.5 px-4 rounded-lg border border-[#00BCD4] text-[#00BCD4] text-sm font-medium hover:bg-[#00BCD4] hover:text-black transition-colors"
             >
               Get in touch →
@@ -53,7 +53,7 @@ export default function UnderConstructionPage() {
 
       {/* Footer */}
       <div className="fixed bottom-0 left-0 right-0 flex justify-between items-center px-8 py-4 text-neutral-600 text-xs">
-        <a href="mailto:hakan@m2e.ai" className="hover:text-neutral-400 transition-colors">
+        <a href="mailto:info@m2e.ai" className="hover:text-neutral-400 transition-colors">
           Contact Us
         </a>
         <div className="flex gap-6">
