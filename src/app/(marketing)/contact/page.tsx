@@ -16,7 +16,7 @@ export default function ContactPage() {
     const subject = encodeURIComponent(`M2E Contact: ${name}${company ? ` (${company})` : ""}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\n${message}`);
 
-    window.location.href = `mailto:hakan@m2e.ai?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:info@m2e.ai?subject=${subject}&body=${body}`;
   }
 
   return (
@@ -124,10 +124,10 @@ export default function ContactPage() {
             <p className="text-muted text-sm">
               Prefer email?{" "}
               <a
-                href="mailto:hakan@m2e.ai"
+                href="mailto:info@m2e.ai"
                 className="text-[#00BCD4] hover:brightness-110 transition-all"
               >
-                hakan@m2e.ai
+                info@m2e.ai
               </a>
             </p>
           </div>

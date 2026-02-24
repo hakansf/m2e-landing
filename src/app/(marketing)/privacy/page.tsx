@@ -89,10 +89,10 @@ export default function PrivacyPage() {
               If you have any questions about this policy or your data, reach
               out to{" "}
               <a
-                href="mailto:hakan@m2e.ai"
+                href="mailto:info@m2e.ai"
                 className="text-teal hover:text-teal-light transition-colors"
               >
-                hakan@m2e.ai
+                info@m2e.ai
               </a>
               .
             </p>

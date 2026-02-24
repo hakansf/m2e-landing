@@ -42,10 +42,10 @@ export default function Footer() {
               Connect
             </p>
             <a
-              href="mailto:hello@m2e.ai"
+              href="mailto:info@m2e.ai"
               className="text-muted-light hover:text-white transition-colors text-sm"
             >
-              hello@m2e.ai
+              info@m2e.ai
             </a>
             <a
               href="https://linkedin.com/in/hakandegirmenci"
