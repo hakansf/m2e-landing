@@ -15,13 +15,16 @@ export default function UnderConstructionPage() {
             height={80}
             className="object-contain"
           />
-          <p className="text-neutral-400 text-lg leading-relaxed">
-            This post has been removed by the moderators.
-            <br />
-            <span className="text-white font-medium">Just kidding —</span> we&apos;re building.
-            <br />
-            Check back soon.
-          </p>
+          <div className="flex flex-col gap-4">
+            <p className="text-neutral-300 text-2xl font-medium leading-snug">
+              This post has been removed by the moderators.
+            </p>
+            <p className="text-neutral-400 text-lg leading-relaxed">
+              <span className="text-white font-medium">Just kidding —</span> we&apos;re building.
+              <br />
+              Check back soon.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -37,9 +40,8 @@ export default function UnderConstructionPage() {
         <div className="absolute inset-0 bg-[#0a0a0a] opacity-60" />
         <div className="relative z-10 max-w-sm w-full mx-8">
           <div className="bg-neutral-900/80 border border-neutral-800 rounded-2xl p-8 text-center backdrop-blur-sm">
-            <p className="text-neutral-400 text-sm mb-1">Want early access?</p>
             <h3 className="text-white font-semibold text-lg mb-4">
-              Schedule a Call
+              Don&apos;t want to wait?
             </h3>
             <a
               href="mailto:info@m2e.ai"
