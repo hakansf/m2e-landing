@@ -55,7 +55,7 @@ export default function UnderConstructionPage() {
 
       {/* Footer */}
       <div className="fixed bottom-0 left-0 right-0 z-20 flex justify-between items-center px-6 md:px-8 py-3 md:py-4 text-neutral-600 text-[10px] md:text-xs">
-        <a href="mailto:info@m2e.ai" className="hover:text-neutral-400 transition-colors">
+        <a href="/contact" className="hover:text-neutral-400 transition-colors">
           Contact Us
         </a>
         <div className="flex gap-4 md:gap-6">
