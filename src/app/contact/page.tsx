@@ -1,25 +1,48 @@
 "use client";
 
-import { type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
+
+const HUBSPOT_URL =
+  "https://api.hsforms.com/submissions/v3/integration/submit/245315051/7d64d8a9-7342-45bd-9d9b-ec3ac33a7c28";
 
 export default function ContactPage() {
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  const router = useRouter();
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const name = data.get("name") || "";
-    const email = data.get("email") || "";
-    const company = data.get("company") || "";
-    const message = data.get("message") || "";
+    setSubmitting(true);
+    setError("");
 
-    const subject = encodeURIComponent(
-      `M2E Contact: ${name}${company ? ` (${company})` : ""}`
-    );
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\n${message}`
-    );
+    const data = new FormData(e.currentTarget);
 
-    window.location.href = `mailto:info@m2e.ai?subject=${subject}&body=${body}`;
+    try {
+      const res = await fetch(HUBSPOT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fields: [
+            { objectTypeId: "0-1", name: "firstname", value: data.get("name") || "" },
+            { objectTypeId: "0-1", name: "email", value: data.get("email") || "" },
+            { objectTypeId: "0-1", name: "company", value: data.get("company") || "" },
+            { objectTypeId: "0-1", name: "message", value: data.get("message") || "" },
+          ],
+          context: {
+            pageUri: "https://m2e.ai/contact",
+            pageName: "M2E Contact",
+          },
+        }),
+      });
+
+      if (!res.ok) throw new Error("Submission failed");
+
+      router.push("/thank-you");
+    } catch {
+      setError("Something went wrong. Please try again or email us directly.");
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -102,11 +125,16 @@ export default function ContactPage() {
               />
             </div>
 
+            {error && (
+              <p className="text-red-400 text-sm">{error}</p>
+            )}
+
             <button
               type="submit"
-              className="w-full py-3 bg-[#00BCD4] text-black font-semibold text-sm rounded-lg hover:brightness-110 transition-all"
+              disabled={submitting}
+              className="w-full py-3 bg-[#00BCD4] text-black font-semibold text-sm rounded-lg hover:brightness-110 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Send Message
+              {submitting ? "Sending..." : "Send Message"}
             </button>
           </form>
 
@@ -164,7 +192,7 @@ export default function ContactPage() {
           <a href="/privacy" className="hover:text-neutral-400 transition-colors">
             Privacy Policy
           </a>
-          <span>&copy; 2026 Memes to an End</span>
+          <a href="/" className="hover:text-neutral-400 transition-colors">&copy; 2026 Memes to an End</a>
         </div>
       </div>
     </div>
