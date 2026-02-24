@@ -23,6 +23,10 @@ body {
   color: var(--color-foreground);
 }
 
+h1, h2, h3 {
+  font-family: 'Impact', 'Arial Narrow', sans-serif;
+}
+
 .dot-grid {
   background-image: radial-gradient(
     circle,
