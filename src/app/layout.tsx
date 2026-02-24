@@ -26,8 +26,11 @@ export const metadata: Metadata = {
       "Community intelligence for the age of AI search.",
   },
   icons: {
-    icon: "/m2e-icon.png",
-    apple: "/m2e-icon.png",
+    icon: [
+      { url: "/m2e-icon.png", sizes: "32x32", type: "image/png" },
+      { url: "/m2e-icon.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: { url: "/m2e-icon.png", sizes: "180x180" },
   },
 };
 
@@ -38,6 +41,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <link rel="icon" href="/m2e-icon.png" type="image/png" />
+      </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
       </body>
