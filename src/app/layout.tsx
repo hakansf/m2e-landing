@@ -25,6 +25,10 @@ export const metadata: Metadata = {
     description:
       "Community intelligence for the age of AI search.",
   },
+  icons: {
+    icon: "/m2e-icon.png",
+    apple: "/m2e-icon.png",
+  },
 };
 
 export default function RootLayout({
