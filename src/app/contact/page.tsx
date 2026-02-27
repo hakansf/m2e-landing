@@ -30,6 +30,7 @@ export default function ContactPage() {
             { objectTypeId: "0-1", name: "message", value: data.get("message") || "" },
           ],
           context: {
+            hutk: "",
             pageUri: "https://m2e.ai/contact",
             pageName: "M2E Contact",
           },
@@ -190,7 +191,11 @@ export default function ContactPage() {
         </a>
         <div className="flex gap-4 md:gap-6">
           <a href="/privacy" className="hover:text-neutral-400 transition-colors">
-            Privacy Policy
+            Privacy
+          </a>
+          <span>|</span>
+          <a href="/terms" className="hover:text-neutral-400 transition-colors">
+            Terms
           </a>
           <a href="/" className="hover:text-neutral-400 transition-colors">&copy; 2026 Memes to an End</a>
         </div>
