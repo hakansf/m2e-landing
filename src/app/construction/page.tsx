@@ -58,7 +58,18 @@ export default function UnderConstructionPage() {
 
       {/* Footer */}
       <footer className="w-full px-6 md:px-8 py-4 bg-[#0a0a0a] text-neutral-600 text-xs">
-        <div className="flex flex-col items-center gap-1 md:flex-row md:justify-between">
+        {/* Mobile */}
+        <div className="flex justify-center md:hidden">
+          <span>
+            <a href="/contact" className="hover:text-neutral-400 transition-colors">Contact</a>
+            {" | "}
+            <a href="/privacy" className="hover:text-neutral-400 transition-colors">Privacy</a>
+            {" | "}
+            <a href="/terms" className="hover:text-neutral-400 transition-colors">Terms</a>
+          </span>
+        </div>
+        {/* Desktop */}
+        <div className="hidden md:flex md:justify-between">
           <a href="/contact" className="hover:text-neutral-400 transition-colors">
             Contact Us
           </a>
