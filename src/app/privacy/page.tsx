@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <div
-      className="min-h-dvh bg-[#0a0a0a] relative"
+      className="min-h-dvh bg-[#0a0a0a] relative flex flex-col"
       style={{
         backgroundImage:
           "radial-gradient(circle, rgba(0, 188, 212, 0.06) 1px, transparent 1px)",
@@ -16,7 +16,7 @@ export default function PrivacyPage() {
       }}
     >
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-2xl px-8 pt-20 pb-24 md:pt-28 md:pb-32">
+      <div className="relative z-10 mx-auto max-w-2xl px-8 pt-20 pb-24 md:pt-28 md:pb-32 flex-1">
         <p className="text-[#00BCD4] text-sm font-medium tracking-wide uppercase mb-4">
           Legal
         </p>
@@ -562,19 +562,21 @@ export default function PrivacyPage() {
       </div>
 
       {/* Footer */}
-      <div className="fixed bottom-0 left-0 right-0 z-20 flex justify-between items-center px-6 md:px-8 py-3 md:py-4 text-neutral-600 text-[10px] md:text-xs">
-        <a href="/contact" className="hover:text-neutral-400 transition-colors">
-          Contact Us
-        </a>
-        <div className="flex gap-4 md:gap-6">
-          <span>
-            <a href="/privacy" className="hover:text-neutral-400 transition-colors">Privacy</a>
-            {" | "}
-            <a href="/terms" className="hover:text-neutral-400 transition-colors">Terms</a>
-          </span>
-          <span>&copy; 2026 Memes to an End</span>
+      <footer className="relative z-10 w-full px-6 md:px-8 py-4 text-neutral-600 text-xs">
+        <div className="flex flex-col items-center gap-1 md:flex-row md:justify-between">
+          <a href="/contact" className="hover:text-neutral-400 transition-colors">
+            Contact Us
+          </a>
+          <div className="flex gap-4 items-center">
+            <span>
+              <a href="/privacy" className="hover:text-neutral-400 transition-colors">Privacy</a>
+              {" | "}
+              <a href="/terms" className="hover:text-neutral-400 transition-colors">Terms</a>
+            </span>
+            <span>&copy; 2026 Memes to an End</span>
+          </div>
         </div>
-      </div>
+      </footer>
     </div>
   );
 }

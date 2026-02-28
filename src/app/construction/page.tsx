@@ -4,9 +4,10 @@ import Image from "next/image";
 
 export default function UnderConstructionPage() {
   return (
-    <div className="h-dvh flex flex-col md:flex-row overflow-hidden">
+    <div className="min-h-dvh flex flex-col">
+      <div className="flex-1 flex flex-col md:flex-row">
       {/* Top / Left panel */}
-      <div className="h-[50dvh] md:h-auto md:w-1/2 bg-[#0a0a0a] flex flex-col items-center justify-center px-8 md:px-12 shrink-0">
+      <div className="min-h-[50dvh] md:w-1/2 bg-[#0a0a0a] flex flex-col items-center justify-center px-8 md:px-12 shrink-0">
         <div className="max-w-sm w-full flex flex-col items-center text-center gap-6 md:gap-8">
           <Image
             src="/m2e-logo.png"
@@ -30,7 +31,7 @@ export default function UnderConstructionPage() {
 
       {/* Bottom / Right panel — dot grid */}
       <div
-        className="h-[50dvh] md:h-auto md:w-1/2 bg-[#0a0a0a] flex flex-col items-center justify-center relative shrink-0"
+        className="min-h-[50dvh] md:w-1/2 bg-[#0a0a0a] flex flex-col items-center justify-center relative shrink-0"
         style={{
           backgroundImage:
             "radial-gradient(circle, #00BCD4 1.2px, transparent 1.2px)",
@@ -53,20 +54,24 @@ export default function UnderConstructionPage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="fixed bottom-0 left-0 right-0 z-20 flex justify-between items-center px-6 md:px-8 py-3 md:py-4 text-neutral-600 text-[10px] md:text-xs">
-        <a href="/contact" className="hover:text-neutral-400 transition-colors">
-          Contact Us
-        </a>
-        <div className="flex gap-4 md:gap-6">
-          <span>
-            <a href="/privacy" className="hover:text-neutral-400 transition-colors">Privacy</a>
-            {" | "}
-            <a href="/terms" className="hover:text-neutral-400 transition-colors">Terms</a>
-          </span>
-          <a href="/" className="hover:text-neutral-400 transition-colors">&copy; 2026 Memes to an End</a>
-        </div>
       </div>
+
+      {/* Footer */}
+      <footer className="w-full px-6 md:px-8 py-4 bg-[#0a0a0a] text-neutral-600 text-xs">
+        <div className="flex flex-col items-center gap-1 md:flex-row md:justify-between">
+          <a href="/contact" className="hover:text-neutral-400 transition-colors">
+            Contact Us
+          </a>
+          <div className="flex gap-4 items-center">
+            <span>
+              <a href="/privacy" className="hover:text-neutral-400 transition-colors">Privacy</a>
+              {" | "}
+              <a href="/terms" className="hover:text-neutral-400 transition-colors">Terms</a>
+            </span>
+            <span>&copy; 2026 Memes to an End</span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
