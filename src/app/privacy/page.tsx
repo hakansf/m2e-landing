@@ -567,13 +567,11 @@ export default function PrivacyPage() {
           Contact Us
         </a>
         <div className="flex gap-4 md:gap-6">
-          <a href="/privacy" className="hover:text-neutral-400 transition-colors">
-            Privacy
-          </a>
-          <span>|</span>
-          <a href="/terms" className="hover:text-neutral-400 transition-colors">
-            Terms
-          </a>
+          <span>
+            <a href="/privacy" className="hover:text-neutral-400 transition-colors">Privacy</a>
+            {" | "}
+            <a href="/terms" className="hover:text-neutral-400 transition-colors">Terms</a>
+          </span>
           <span>&copy; 2026 Memes to an End</span>
         </div>
       </div>

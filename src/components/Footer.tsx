@@ -61,15 +61,11 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted">
           <p>&copy; {new Date().getFullYear()} Memes to an End. All rights reserved.</p>
-          <div className="flex items-center gap-2">
-            <Link href="/privacy" className="hover:text-white transition-colors">
-              Privacy
-            </Link>
-            <span>|</span>
-            <Link href="/terms" className="hover:text-white transition-colors">
-              Terms
-            </Link>
-          </div>
+          <span>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+            {" | "}
+            <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
+          </span>
         </div>
       </div>
     </footer>

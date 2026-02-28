@@ -44,13 +44,11 @@ export default function ThankYouPage() {
           Contact Us
         </a>
         <div className="flex gap-4 md:gap-6">
-          <a href="/privacy" className="hover:text-neutral-400 transition-colors">
-            Privacy
-          </a>
-          <span>|</span>
-          <a href="/terms" className="hover:text-neutral-400 transition-colors">
-            Terms
-          </a>
+          <span>
+            <a href="/privacy" className="hover:text-neutral-400 transition-colors">Privacy</a>
+            {" | "}
+            <a href="/terms" className="hover:text-neutral-400 transition-colors">Terms</a>
+          </span>
           <a href="/" className="hover:text-neutral-400 transition-colors">&copy; 2026 Memes to an End</a>
         </div>
       </div>
