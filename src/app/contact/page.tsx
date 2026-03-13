@@ -1,15 +1,11 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
-
-const HUBSPOT_URL =
-  "https://api.hsforms.com/submissions/v3/integration/submit/245315051/7d64d8a9-7342-45bd-9d9b-ec3ac33a7c28";
 
 export default function ContactPage() {
-  const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -19,29 +15,25 @@ export default function ContactPage() {
     const data = new FormData(e.currentTarget);
 
     try {
-      const res = await fetch(HUBSPOT_URL, {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          fields: [
-            { objectTypeId: "0-1", name: "firstname", value: data.get("name") || "" },
-            { objectTypeId: "0-1", name: "email", value: data.get("email") || "" },
-            { objectTypeId: "0-1", name: "company", value: data.get("company") || "" },
-            { objectTypeId: "0-1", name: "message", value: data.get("message") || "" },
-          ],
-          context: {
-            hutk: "",
-            pageUri: "https://m2e.ai/contact",
-            pageName: "M2E Contact",
-          },
+          name: data.get("name"),
+          email: data.get("email"),
+          company: data.get("company"),
+          message: data.get("message"),
         }),
       });
 
       if (!res.ok) throw new Error("Submission failed");
 
-      router.push("/thank-you");
+      setSuccess(true);
     } catch {
-      setError("Something went wrong. Please try again or email us directly.");
+      setError(
+        "Something went wrong. Please email us at info@m2e.ai",
+      );
+    } finally {
       setSubmitting(false);
     }
   }
@@ -59,6 +51,13 @@ export default function ContactPage() {
             We&apos;d love to hear from you.
           </p>
 
+          {success ? (
+            <div className="rounded-lg border border-[#00BCD4]/30 bg-[#00BCD4]/10 p-6 text-center">
+              <p className="text-[#00BCD4] font-semibold text-lg mb-1">
+                Thanks! We&apos;ll be in touch soon.
+              </p>
+            </div>
+          ) : (
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label
@@ -139,6 +138,7 @@ export default function ContactPage() {
               {submitting ? "Sending..." : "Send Message"}
             </button>
           </form>
+          )}
 
           <p className="mt-8 text-neutral-600 text-sm">
             Prefer email?{" "}
