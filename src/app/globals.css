@@ -1,37 +1,17 @@
-@import "tailwindcss";
+/* Tailwind is loaded without its "preflight" reset: the site's own
+   stylesheet (site.css) sets every base style itself, and the reset
+   would change spacing, lists and buttons across the design.
+   Tailwind utility classes still work, so shadcn / 21st.dev components
+   can be added later. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
 
 @theme inline {
-  --color-background: #0a0a0a;
-  --color-foreground: #ededed;
-  --color-teal: #00D4AA;
-  --color-teal-light: #00E8BB;
-  --color-teal-dark: #00B894;
-  --color-surface: #111111;
-  --color-surface-light: #1a1a1a;
-  --color-muted: #71717a;
-  --color-muted-light: #a1a1aa;
-  --color-border: #222222;
-  --font-sans: var(--font-inter);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--color-background);
-  color: var(--color-foreground);
-}
-
-h1, h2, h3 {
-  font-family: 'Impact', 'Arial Narrow', sans-serif;
-}
-
-.dot-grid {
-  background-image: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.06) 1px,
-    transparent 1px
-  );
-  background-size: 24px 24px;
+  --color-ink: #0c1012;
+  --color-cloud: #f2f3f4;
+  --color-cyan: #00bcd4;
+  --color-cyan-text: #00838f;
+  --font-sans: "Poppins", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
