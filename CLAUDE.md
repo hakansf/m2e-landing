@@ -14,7 +14,10 @@ Marketing site for **Memes to an End (M2E)**. Designed and first built by Will C
 - `src/app/(site)/` — the marketing pages: `page.tsx` (home), `services`, `about`, `press`, `contact`. They share `(site)/layout.tsx`.
 - `src/app/not-found.tsx` — the 404 page (renders the site chrome itself).
 - `src/components/site/` — `SiteChrome` (frame, header, footer), `SiteHeader` (mobile menu + current-page state), `SiteFooter`, `ContactForm`, `PageEffects` (hero network animation + approval switches).
-- `src/lib/site-config.ts` — **approval switches**. `SHOW.clients = true` reveals the client logo bar and testimonial (marked `data-flag="clients"` in the pages).
+- `src/lib/site-config.ts` — the things that change most:
+  - `SHOW.clients = true` reveals the "Trusted by" client logo bar (marked `data-flag="clients"`).
+  - `QUOTES` — client quotes for the home page "In their words" section. Short attributed quotes, not case studies. First one shows large, the rest as cards; a quote only appears once its `text` is filled in.
+  - `TEAM_LINKEDIN` — profile URLs for the LinkedIn icons under each team name (home + About). An empty URL shows the icon without a link.
 - `src/app/api/contact/route.ts` — contact form backend. Sends to info@m2e.ai through Resend (`RESEND_API_KEY` is set in Vercel).
 - `src/app/privacy`, `src/app/terms` — older legal pages with their own styling, not yet linked from the new footer.
 - `public/assets/img/` — logos, favicon, OG image, team portraits.
@@ -31,6 +34,10 @@ Marketing site for **Memes to an End (M2E)**. Designed and first built by Will C
 - **Signature details:** thin frame lines and vertical side text, small cyan square bullets, cyan pill labels (`.tag`, used sparingly), the hero's network of curved lines and squares.
 - **Dot texture:** a fine teal dot grid on the right side of dark areas and ink dots on the cyan band, fading in from the left so it never sits under body copy (`--dots` / `--dots-ink` in site.css). Keep it subtle and off white sections.
 - **Hover:** one subtle cyan glow on boxes and cards (`--glow`). Portraits have no hover effect.
+- **Hero network:** draws itself in once on load, then stays still. No cursor-follow and no looping pulse (Hakan removed both, Nov 2026).
+- **Line breaks:** headlines use `text-wrap: balance` so no line ends with a lone word. Use `<span className="keep">` to hold a phrase on one line (wider screens only) and `&nbsp;` to tie two words together everywhere.
+- **Navigation:** Services, About, Press, plus the "Start a conversation" button. There is deliberately no separate "Contact" nav item (the button goes there); the footer still lists Contact.
+- **Hero line:** the headline runs into the line below it: "From LOLs to LLMs…" / "…we harness the power of online culture…".
 - **Spacing** was deliberately tightened; standard section padding is `--section-y`, short sections use `.section--tight`.
 
 ## Copy guardrails
@@ -60,7 +67,8 @@ Press items are written directly in `src/app/(site)/press/page.tsx` (newest firs
 
 ## Before launch (still open)
 
-1. Footer **Privacy** link is a placeholder; the existing `/privacy` and `/terms` pages need a wording review before they're linked.
-2. Confirm the LinkedIn URL in `SiteFooter.tsx`.
-3. Client approvals for logos and the testimonial, then flip `SHOW.clients`.
-4. Confirm the "Why now" stats and source links still resolve.
+1. Add the team's LinkedIn URLs (`TEAM_LINKEDIN`) and new client quotes as they're approved (`QUOTES`).
+2. Footer **Privacy** link is a placeholder; the existing `/privacy` and `/terms` pages need a wording review before they're linked.
+3. Confirm the company LinkedIn URL in `SiteFooter.tsx`.
+4. Client approval for logos, then flip `SHOW.clients`.
+5. Confirm the "Why now" stats and source links still resolve.

@@ -8,7 +8,7 @@ const NAV = [
   { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
   { href: "/press", label: "Press" },
-  { href: "/contact", label: "Contact" },
+  // no separate "Contact" item: the "Start a conversation" button goes there
 ];
 
 export default function SiteHeader() {

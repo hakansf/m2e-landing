@@ -200,7 +200,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
 .display .s {
   /* the deck's small lowercase "s" in LOLs / LLMs */
   text-transform: none;
-  font-size: 0.48em;
+  font-size: 0.56em;
   letter-spacing: 0;
 }
 
@@ -448,16 +448,11 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
     animation: fade 0.6s ease forwards;
     animation-delay: var(--d, 0.8s);
   }
-  .js .network .pulse {
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: pulse 3.2s ease-in-out 3s infinite;
-  }
+  /* After drawing in, the network stays still: no looping pulse, no cursor-follow (Hakan, Nov 2026) */
 }
 @keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes pop { from { opacity: 0; transform: scale(0.2); } to { opacity: 1; transform: scale(1); } }
 @keyframes fade { to { opacity: 1; } }
-@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
 
 @media (max-width: 960px) {
   .hero { min-height: 0; }
@@ -765,6 +760,36 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
   .quote__mark { font-size: 84px; }
 }
 
+/* More client quotes, under the featured one: short attributed quotes,
+   not case studies. Filled from QUOTES in src/lib/site-config.ts. */
+.quote-grid {
+  list-style: none;
+  margin: 56px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.quote-card {
+  margin: 0;
+  padding: 28px 28px 26px;
+  background: var(--cloud);
+  border-top: 3px solid var(--cyan);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.quote-card blockquote {
+  margin: 0 0 22px;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--ink);
+  flex: 1;
+}
+.quote-card figcaption { font-size: 14px; color: var(--muted-light); }
+.quote-card figcaption strong { color: var(--ink); display: block; font-size: 15px; }
+
 /* --------------------------------------------------------------------------
    Team
    -------------------------------------------------------------------------- */
@@ -819,6 +844,20 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
   vertical-align: 3px;
 }
 .person__link:hover { background: var(--cyan); color: var(--ink); }
+
+/* LinkedIn icon under each team member's name */
+.person__in {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  margin: 0 0 10px;
+  color: var(--muted-dark);
+  transition: color 0.2s ease;
+}
+.person__in svg { width: 100%; height: 100%; }
+a.person__in:hover, a.person__in:focus-visible { color: var(--cyan); }
+.section--light .person__in, .section--cloud .person__in { color: var(--muted-light); }
+.section--light a.person__in:hover, .section--cloud a.person__in:hover { color: var(--cyan-deep); }
 .section--light .person__role,
 .section--cloud .person__role { color: var(--muted-light); }
 .section--light .person p,
@@ -942,7 +981,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
   font-size: 22px;
   color: var(--paper);
 }
-.site-footer__tag .s { text-transform: none; font-size: 0.55em; }
+.site-footer__tag .s { text-transform: none; font-size: 0.62em; }
 .footer-links { display: flex; flex-wrap: wrap; gap: 12px 32px; list-style: none; margin: 0; padding: 0; }
 .footer-links a {
   font-family: var(--mono);
@@ -1301,13 +1340,6 @@ body { font-size: 18px; line-height: 1.62; letter-spacing: -0.003em; }
 }
 .field select:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 1px var(--cyan); }
 
-/* hero network follows the cursor a little */
-.network .layer { transition: transform 0.6s cubic-bezier(.2,.7,.2,1); }
-@media (prefers-reduced-motion: no-preference) {
-  .network .layer--near { transform: translate(calc(var(--mx, 0) * 14px), calc(var(--my, 0) * 14px)); }
-  .network .layer--far  { transform: translate(calc(var(--mx, 0) * 6px),  calc(var(--my, 0) * 6px)); }
-}
-
 /* refined link + button motion */
 .btn { letter-spacing: 0.005em; }
 .btn--primary { box-shadow: inset 0 0 0 0 var(--paper); }
@@ -1608,3 +1640,21 @@ body { font-size: 17px; letter-spacing: 0; }
     mask-image: linear-gradient(to bottom, #000 0%, transparent 45%);
   }
 }
+
+/* --------------------------------------------------------------------------
+   Line breaks: no lonely last words
+   Headlines balance their lines so none ends with a single word on its own;
+   longer text avoids a one-word last line where the browser supports it.
+   Use .keep to hold a phrase on one line (wider screens only, so it can
+   still wrap on a phone), and &nbsp; to tie two words together everywhere.
+   -------------------------------------------------------------------------- */
+h1, h2, h3, .display, .closer, .pullquote, .lede, .service-block__lead, .camp__name {
+  text-wrap: balance;
+}
+p, li, blockquote, figcaption { text-wrap: pretty; }
+@media (min-width: 700px) {
+  .keep { white-space: nowrap; }
+}
+
+/* in-page links land below the sticky header */
+[id] { scroll-margin-top: 96px; }

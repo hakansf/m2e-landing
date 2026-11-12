@@ -58,7 +58,7 @@ export default function PressPage() {
           <ul className="camps">
             <li className="camp">
               <div className="camp__head">
-                <h3 className="camp__name">Adobe PhotoshopBattles Live</h3>
+                <h3 className="camp__name">Adobe PhotoshopBattles&nbsp;Live</h3>
                 <span className="camp__year">2021</span>
               </div>
               <ul className="camp__links">

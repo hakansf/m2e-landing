@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import LinkedInLink from "@/components/site/LinkedInLink";
 
 /* Converted from Will's static about.html. Edit the markup here;
    styles live in src/app/site.css. */
@@ -21,7 +22,9 @@ export default function AboutPage() {
       <section className="page-hero" aria-labelledby="page-title">
         <div className="wrap">
           <span className="kicker" aria-hidden="true"></span>
-          <h1 className="display h1" id="page-title">Do right by humans. AI visibility follows.</h1>
+          <h1 className="display h1" id="page-title">
+            <span className="keep">Do right by humans.</span> <span className="keep">AI&nbsp;visibility follows.</span>
+          </h1>
         </div>
       </section>
       <section className="section section--light section--tight" aria-labelledby="meme-title">
@@ -36,7 +39,7 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
-      <section className="section section--light" aria-labelledby="manifesto-title">
+      <section className="section section--light" id="manifesto" aria-labelledby="manifesto-title">
         <div className="wrap">
           <span className="kicker" aria-hidden="true"></span>
           <h2 className="visually-hidden" id="manifesto-title">Manifesto</h2>
@@ -56,7 +59,9 @@ export default function AboutPage() {
             <p>
               Shortcuts don&apos;t survive here. Communities notice them, and so does AI. What lasts is presence your own people build and own.
             </p>
-            <p className="closer">Do right by humans. AI visibility follows.</p>
+            <p className="closer">
+              <span className="keep">Do right by humans.</span> <span className="keep">AI&nbsp;visibility follows.</span>
+            </p>
           </div>
         </div>
       </section>
@@ -128,6 +133,7 @@ export default function AboutPage() {
                 <span className="sq" aria-hidden="true"></span>
               </div>
               <h3>Hakan Degirmenci</h3>
+              <LinkedInLink who="hakan" />
               <p className="person__role">Founder + CEO</p>
               <p>
                 Hakan spent six years at Reddit in brand partnerships, where he led the commercial partnership with Adobe and worked with some of the world&apos;s largest brands on how to show up in communities. Before Reddit, he built and sold a multi-location healthcare business. He founded M2E to help brands earn trust where it&apos;s actually formed.
@@ -139,6 +145,7 @@ export default function AboutPage() {
                 <span className="sq" aria-hidden="true"></span>
               </div>
               <h3>Will Cady</h3>
+              <LinkedInLink who="will" />
               <p className="person__role">Head of Strategy and Storytelling</p>
               <p>
                 Will is a multimedia artist and cultural strategist. An early leader at Reddit, he launched its LA office, built KarmaLab, Reddit&apos;s in-house creative strategy agency, and helped shape it into a billion-dollar platform. His book,{" "}
@@ -152,6 +159,7 @@ export default function AboutPage() {
                 <span className="sq" aria-hidden="true"></span>
               </div>
               <h3>Vanessa Hensler</h3>
+              <LinkedInLink who="vanessa" />
               <p className="person__role">Head of Intelligence</p>
               <p>
                 Vanessa leads M2E&apos;s research practice, turning what communities say into insight brands can act on. She is a faculty member at the University of Southern California and brings an academic&apos;s rigor to understanding how communities form, how trust is built, and what makes them healthy.
@@ -163,6 +171,7 @@ export default function AboutPage() {
                 <span className="sq" aria-hidden="true"></span>
               </div>
               <h3>Rachelle Cady</h3>
+              <LinkedInLink who="rachelle" />
               <p className="person__role">Head of Operations</p>
               <p>
                 Rachelle leads M2E&apos;s enablement programs, helping client teams build the operations to run their own community presence: the playbooks, workflows, and processes that keep it going. She was the first operations hire at Alltroo, where she ran talent and charity partnerships with the NFL and NHL, and previously led gaming and esports sponsorships at United Talent Agency. She also worked at Omaze.

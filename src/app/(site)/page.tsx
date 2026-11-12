@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import LinkedInLink from "@/components/site/LinkedInLink";
+import ClientQuotes from "@/components/site/ClientQuotes";
 import ContactForm from "@/components/site/ContactForm";
 
 /* Converted from Will's static index.html. Edit the markup here;
@@ -31,10 +33,11 @@ export default function HomePage() {
               </span>
               <span className="line">
                 to LLM
-                <span className="s">s</span>
+                <span className="s">s</span>…
               </span>
             </h1>
-            <p className="lede">We harness the power of online culture as a force to strengthen your business.</p>
+            {/* the headline runs into this line: "From LOLs to LLMs… we harness…" */}
+            <p className="lede">…we harness the power of online culture as a force to strengthen your business.</p>
             <p className="hero__sub">
               M2E reads the communities that shape your reputation (what people believe, who they trust, and why) and turns it into strategy. Then we fortify your capability to show up where it matters most for the long run: on Reddit, in search, and in the AI answers people now trust.
             </p>
@@ -139,7 +142,7 @@ export default function HomePage() {
             <p>We help you become one.</p>
           </div>
           <p className="manifesto__close">
-            <Link className="text-link" href="/about">Read our manifesto</Link>
+            <Link className="text-link" href="/about#manifesto">Read our manifesto</Link>
           </p>
         </div>
       </section>
@@ -245,24 +248,8 @@ export default function HomePage() {
           </p>
         </div>
       </section>
-      {/* ============================== CLIENT VOICE (needs approval) ============================== */}
-      <section className="section section--light" data-flag="clients" hidden aria-labelledby="voice-title">
-        <div className="wrap">
-          <h2 className="visually-hidden" id="voice-title">What our clients say</h2>
-          <figure className="quote">
-            <span className="quote__mark" aria-hidden="true">“</span>
-            <div>
-              <blockquote>
-                Most brands think they can just run more ads on Reddit to show up in AI search. That&apos;s not how it works. You have to build a real relationship with the community first, and Memes to an End is the only team I&apos;ve seen that truly gets that.
-              </blockquote>
-              <figcaption>
-                <strong>Ellen VanderWilt</strong>
-                Director, Customer Marketing, Adobe
-              </figcaption>
-            </div>
-          </figure>
-        </div>
-      </section>
+      {/* ============================== CLIENT QUOTES (edit in src/lib/site-config.ts) ============================== */}
+      <ClientQuotes />
       {/* ============================== WHY REDDIT ============================== */}
       <section className="section section--light section--tight" id="why-reddit" aria-labelledby="reddit-title">
         <div className="wrap">
@@ -352,6 +339,7 @@ export default function HomePage() {
                 <span className="sq" aria-hidden="true"></span>
               </div>
               <h3>Hakan Degirmenci</h3>
+              <LinkedInLink who="hakan" />
               <p className="person__role">Founder + CEO</p>
               <p>Six years in brand partnerships at Reddit, where he led the commercial partnership with Adobe.</p>
             </li>
@@ -361,6 +349,7 @@ export default function HomePage() {
                 <span className="sq" aria-hidden="true"></span>
               </div>
               <h3>Will Cady</h3>
+              <LinkedInLink who="will" />
               <p className="person__role">Head of Strategy and Storytelling</p>
               <p>Launched Reddit&apos;s LA office and built KarmaLab, Reddit&apos;s in-house creative strategy agency.</p>
             </li>
@@ -370,6 +359,7 @@ export default function HomePage() {
                 <span className="sq" aria-hidden="true"></span>
               </div>
               <h3>Vanessa Hensler</h3>
+              <LinkedInLink who="vanessa" />
               <p className="person__role">Head of Intelligence</p>
               <p>Leads our research practice and teaches at the University of Southern California.</p>
             </li>
@@ -379,6 +369,7 @@ export default function HomePage() {
                 <span className="sq" aria-hidden="true"></span>
               </div>
               <h3>Rachelle Cady</h3>
+              <LinkedInLink who="rachelle" />
               <p className="person__role">Head of Operations</p>
               <p>
                 Leads enablement programs to empower client operations. Previously operations at Alltroo, Omaze, and UTA.
