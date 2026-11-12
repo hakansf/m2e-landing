@@ -18,6 +18,42 @@ export const TEAM_LINKEDIN = {
 
 export type TeamMember = keyof typeof TEAM_LINKEDIN;
 
+/* COMMUNITY GALLERY ("Every community has a culture", home page)
+   One tile per community. Images live in public/assets/img/communities/
+   as 4:5 portraits (800 × 1000), dark backgrounds, teal/magenta grade, so
+   the set reads as one series. To add one: drop the image in that folder
+   and add a line here. Keep the descriptions about culture, never numbers. */
+export type Community = { sub: string; image: string; alt: string; line: string };
+
+export const COMMUNITIES: Community[] = [
+  {
+    sub: "r/coffee",
+    image: "/assets/img/communities/coffee.jpg",
+    alt: "Teal latte art in a black cup, steam rising",
+    line: "Home brewers and espresso obsessives. High trust, low tolerance for brand posts.",
+  },
+  {
+    sub: "r/personalfinance",
+    image: "/assets/img/communities/personalfinance.jpg",
+    alt: "Close-up engraving of a hundred-dollar bill in teal light",
+    line: "Careful savers who check every claim twice. Advice earns trust; pitches don't.",
+  },
+  {
+    sub: "r/mycology",
+    image: "/assets/img/communities/mycology.jpg",
+    alt: "Teal, magenta and ochre mushrooms arranged against black",
+    line: "Foragers and citizen scientists. Precision is respect, and a wrong ID gets corrected fast.",
+  },
+];
+
+/* PRESS MARQUEE (home page, under the credentials band)
+   Outlets that have covered the team's work. Only list outlets with
+   confirmed coverage on the Press page. */
+export const PRESS_OUTLETS = [
+  "Adweek", "CNBC", "Variety", "Digiday", "The Drum", "Newsweek", "Engadget",
+  "Marketing Dive", "Modern Retail", "WARC", "Event Marketer", "BizBash", "LBB", "Tubefilter",
+];
+
 /* CLIENT QUOTES
    Short, attributed quotes (not case studies). The first quote is shown
    large; the rest sit in a row of cards below it. A quote only appears once

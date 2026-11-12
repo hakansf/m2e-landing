@@ -18,6 +18,8 @@ Marketing site for **Memes to an End (M2E)**. Designed and first built by Will C
   - `SHOW.clients = true` reveals the "Trusted by" client logo bar (marked `data-flag="clients"`).
   - `QUOTES` — client quotes for the home page "In their words" section. Short attributed quotes, not case studies. First one shows large, the rest as cards; a quote only appears once its `text` is filled in.
   - `TEAM_LINKEDIN` — profile URLs for the LinkedIn icons under each team name (home + About). An empty URL shows the icon without a link.
+  - `COMMUNITIES` — tiles for the home "Every community has a culture" gallery (image + subreddit + one line about its culture, never numbers).
+  - `PRESS_OUTLETS` — names in the home press marquee; only outlets with confirmed coverage on the Press page.
 - `src/app/api/contact/route.ts` — contact form backend. Sends to info@m2e.ai through Resend (`RESEND_API_KEY` is set in Vercel).
 - `src/app/privacy`, `src/app/terms` — older legal pages with their own styling, not yet linked from the new footer.
 - `public/assets/img/` — logos, favicon, OG image, team portraits.
@@ -34,6 +36,8 @@ Marketing site for **Memes to an End (M2E)**. Designed and first built by Will C
 - **Signature details:** thin frame lines and vertical side text, small cyan square bullets, cyan pill labels (`.tag`, used sparingly), the hero's network of curved lines and squares.
 - **Dot texture:** a fine teal dot grid on the right side of dark areas and ink dots on the cyan band, fading in from the left so it never sits under body copy (`--dots` / `--dots-ink` in site.css). Keep it subtle and off white sections.
 - **Hover:** one subtle cyan glow on boxes and cards (`--glow`). Portraits have no hover effect.
+- **Effects (21st.dev-style, hand-built):** reactive dots in the home hero (`DotField.tsx`: dots near the cursor brighten, nothing moves; off on touch and reduced motion), spotlight cards (soft cyan light under the cursor on cards, set by `PageEffects`), and the press marquee (`PressMarquee.tsx`: pauses on hover, still for reduced motion).
+- **Community imagery:** dark, low-key studio shots with a teal/magenta grade, one subject that personifies a subreddit's culture (a person or an object). 4:5 portraits, 800 × 1000, in `public/assets/img/communities/`. All images should look like one series.
 - **Hero network:** draws itself in once on load, then stays still. No cursor-follow and no looping pulse (Hakan removed both, Nov 2026).
 - **Line breaks:** headlines use `text-wrap: balance` so no line ends with a lone word. Use `<span className="keep">` to hold a phrase on one line (wider screens only) and `&nbsp;` to tie two words together everywhere.
 - **Navigation:** Services, About, Press, plus the "Start a conversation" button. There is deliberately no separate "Contact" nav item (the button goes there); the footer still lists Contact.

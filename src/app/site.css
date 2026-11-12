@@ -1658,3 +1658,132 @@ p, li, blockquote, figcaption { text-wrap: pretty; }
 
 /* in-page links land below the sticky header */
 [id] { scroll-margin-top: 96px; }
+
+/* --------------------------------------------------------------------------
+   Reactive dots (home hero). The CSS dot grid is the base layer; a canvas
+   lights the dots nearest the cursor. Nothing moves. See DotField.tsx.
+   -------------------------------------------------------------------------- */
+.dot-field {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Spotlight cards: a soft cyan light under the cursor, on top of the glow.
+   PageEffects sets --sx / --sy as the pointer moves over a card.
+   -------------------------------------------------------------------------- */
+@media (hover: hover) and (pointer: fine) {
+  .service:hover, .feature:hover, .step:hover, .service-block__out:hover,
+  .creds__list li:hover, .quote-card:hover, .community:hover {
+    background-image: radial-gradient(260px circle at var(--sx, 50%) var(--sy, 50%), rgba(0, 188, 212, 0.16), transparent 70%);
+  }
+  .community:hover, .quote-card:hover { box-shadow: var(--glow); }
+}
+
+/* --------------------------------------------------------------------------
+   Press marquee (home, under the credentials band)
+   -------------------------------------------------------------------------- */
+.marquee {
+  background: var(--ink);
+  border-top: 1px solid var(--rule-dark);
+  border-bottom: 1px solid var(--rule-dark);
+  padding-block: 22px;
+}
+.marquee__inner { display: flex; align-items: center; gap: 32px; }
+.marquee__label {
+  flex: none;
+  color: var(--muted-dark);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.marquee__label:hover { color: var(--cyan); }
+.marquee__track {
+  flex: 1;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee__belt { display: flex; width: max-content; }
+.marquee__row {
+  display: flex;
+  gap: 56px;
+  margin: 0;
+  padding: 0 56px 0 0;
+  list-style: none;
+}
+.marquee__row li {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.72);
+  white-space: nowrap;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .marquee__belt { animation: marquee 60s linear infinite; }
+  .marquee:hover .marquee__belt { animation-play-state: paused; }
+}
+@keyframes marquee { to { transform: translateX(-50%); } }
+@media (max-width: 760px) {
+  .marquee__inner { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .marquee__track { width: 100%; }
+  .marquee__row li { font-size: 22px; }
+}
+
+/* --------------------------------------------------------------------------
+   Community gallery: one tile per community, same dark teal grade
+   -------------------------------------------------------------------------- */
+.community-grid {
+  list-style: none;
+  margin: 48px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+.community {
+  background-color: #12181b;
+  border: 1px solid var(--rule-dark);
+  transition: box-shadow 0.25s ease, background-color 0.25s ease;
+}
+.community__media { position: relative; aspect-ratio: 4 / 5; overflow: hidden; }
+.community__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.community__media::after {
+  /* quiet the bottom of the image so the label always reads */
+  content: "";
+  position: absolute;
+  inset: 55% 0 0;
+  background: linear-gradient(to bottom, transparent, rgba(12, 16, 18, 0.85));
+}
+.community__sub {
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display);
+  text-transform: none;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--paper);
+}
+.community__sub::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: var(--cyan);
+  flex: none;
+}
+.community__line {
+  margin: 0;
+  padding: 18px 20px 22px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #cfd6d9;
+}
+.communities .section-head .body-lg { max-width: 46ch; }

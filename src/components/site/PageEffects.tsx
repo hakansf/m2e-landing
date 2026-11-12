@@ -25,5 +25,21 @@ export default function PageEffects() {
     });
   }, [pathname]);
 
+  // Spotlight cards: tell the hovered card where the pointer is, so its
+  // soft cyan light sits under the cursor (styles in site.css).
+  useEffect(() => {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const SPOT = ".service, .feature, .step, .service-block__out, .creds__list li, .quote-card, .community";
+    const move = (e: PointerEvent) => {
+      const card = (e.target as Element | null)?.closest<HTMLElement>(SPOT);
+      if (!card) return;
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--sx", `${e.clientX - r.left}px`);
+      card.style.setProperty("--sy", `${e.clientY - r.top}px`);
+    };
+    document.addEventListener("pointermove", move, { passive: true });
+    return () => document.removeEventListener("pointermove", move);
+  }, []);
+
   return null;
 }

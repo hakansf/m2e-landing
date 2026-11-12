@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import LinkedInLink from "@/components/site/LinkedInLink";
 import ClientQuotes from "@/components/site/ClientQuotes";
+import CommunityGallery from "@/components/site/CommunityGallery";
+import DotField from "@/components/site/DotField";
+import PressMarquee from "@/components/site/PressMarquee";
 import ContactForm from "@/components/site/ContactForm";
 
 /* Converted from Will's static index.html. Edit the markup here;
@@ -24,6 +27,7 @@ export default function HomePage() {
       {/* ============================== HERO ============================== Background is a placeholder. To add a photo:   style="--hero-image:url('assets/img/hero.jpg')" on .hero To add a video loop: put <video autoplay muted loop playsinline src="assets/video/hero.mp4"></video> inside .hero__bg */}
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero__bg" aria-hidden="true"></div>
+        <DotField />
         <div className="wrap hero__grid">
           <div className="hero__copy">
             <h1 className="display h1" id="hero-title">
@@ -117,6 +121,8 @@ export default function HomePage() {
           </ul>
         </div>
       </section>
+      {/* ============================== PRESS MARQUEE (outlets in src/lib/site-config.ts) ============================== */}
+      <PressMarquee />
       {/* ============================== PROOF BAR (needs approval) ============================== */}
       <section className="proof" data-flag="clients" hidden aria-label="Clients">
         <div className="wrap proof__inner">
@@ -146,6 +152,8 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+      {/* ============================== COMMUNITIES (tiles in src/lib/site-config.ts) ============================== */}
+      <CommunityGallery />
       {/* ============================== WHAT WE DO ============================== */}
       <section className="section section--cloud" id="services" aria-labelledby="do-title">
         <div className="wrap">
