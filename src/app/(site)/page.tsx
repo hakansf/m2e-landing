@@ -4,6 +4,7 @@ import LinkedInLink from "@/components/site/LinkedInLink";
 import ClientQuotes from "@/components/site/ClientQuotes";
 import CommunityGallery from "@/components/site/CommunityGallery";
 import DotField from "@/components/site/DotField";
+import HeroNetwork from "@/components/site/HeroNetwork";
 import PressMarquee from "@/components/site/PressMarquee";
 import ContactForm from "@/components/site/ContactForm";
 
@@ -51,49 +52,9 @@ export default function HomePage() {
               <Link className="btn btn--ghost" href="/services#process">See how we work</Link>
             </div>
           </div>
-          <div className="hero__art" aria-hidden="true">
-            <svg className="network" viewBox="0 0 560 640" role="presentation">
-              {/* spine */}
-              <path className="path" style={{ "--d": ".15s" } as React.CSSProperties} d="M60 600 C 150 590, 210 540, 250 470 S 290 340, 300 300 S 340 200, 400 170 S 470 90, 520 40"></path>
-              {/* branches */}
-              <path className="path" style={{ "--d": "1.1s" } as React.CSSProperties} d="M300 300 C 330 300, 350 330, 392 334"></path>
-              <path className="path" style={{ "--d": "1.2s" } as React.CSSProperties} d="M250 470 C 280 470, 300 448, 342 446"></path>
-              <path className="path" style={{ "--d": "1.3s" } as React.CSSProperties} d="M400 170 C 420 190, 440 205, 470 206"></path>
-              <path className="path" style={{ "--d": "1.4s" } as React.CSSProperties} d="M452 112 C 480 104, 500 116, 520 126"></path>
-              <path className="path" style={{ "--d": "1.0s" } as React.CSSProperties} d="M130 586 C 150 610, 175 625, 205 622"></path>
-              <path className="path" style={{ "--d": "1.25s" } as React.CSSProperties} d="M300 300 C 270 290, 250 268, 236 250"></path>
-              <g className="layer layer--far">
-                {/* nodes */}
-                <rect className="node node--cyan pop" style={{ "--d": ".3s" } as React.CSSProperties} x="38" y="578" width="44" height="44"></rect>
-                <rect className="node node--cyan pop" style={{ "--d": ".55s" } as React.CSSProperties} x="126" y="582" width="9" height="9"></rect>
-                <rect className="node node--hollow pop" style={{ "--d": "1.5s" } as React.CSSProperties} x="205" y="604" width="38" height="34"></rect>
-                <rect className="node pop" style={{ "--d": ".8s" } as React.CSSProperties} x="240" y="460" width="20" height="20"></rect>
-                <rect className="node node--cyan pop" style={{ "--d": "1.55s" } as React.CSSProperties} x="342" y="440" width="13" height="13"></rect>
-                <g className="pulse">
-                  <rect className="node node--cyan pop" style={{ "--d": "1s" } as React.CSSProperties} x="276" y="276" width="48" height="48"></rect>
-                </g>
-                <rect className="node node--hollow pop" style={{ "--d": "1.6s" } as React.CSSProperties} x="392" y="324" width="22" height="20"></rect>
-                <rect className="node pop" style={{ "--d": "1.65s" } as React.CSSProperties} x="226" y="236" width="16" height="16"></rect>
-                <rect className="node pop" style={{ "--d": "1.25s" } as React.CSSProperties} x="391" y="161" width="18" height="18"></rect>
-                <rect className="node pop" style={{ "--d": "1.7s" } as React.CSSProperties} x="470" y="199" width="14" height="14"></rect>
-                <rect className="node node--deep pop" style={{ "--d": "1.45s" } as React.CSSProperties} x="430" y="96" width="46" height="30"></rect>
-                <rect className="node node--hollow pop" style={{ "--d": "1.9s" } as React.CSSProperties} x="514" y="30" width="12" height="10"></rect>
-                <rect className="node pop" style={{ "--d": "1.8s" } as React.CSSProperties} x="518" y="118" width="40" height="40" fill="#1a2023"></rect>
-              </g>
-              <g className="layer layer--near">
-                {/* labels */}
-                <text className="fade label--strong" style={{ "--d": "1.2s" } as React.CSSProperties} x="96" y="566">Search</text>
-                <text className="fade" style={{ "--d": "1.9s" } as React.CSSProperties} x="250" y="634" textAnchor="start" dx="0">Reviews</text>
-                <text className="fade label--strong" style={{ "--d": "1.3s" } as React.CSSProperties} x="228" y="476" textAnchor="end">People</text>
-                <text className="fade" style={{ "--d": "1.9s" } as React.CSSProperties} x="362" y="452">Support</text>
-                <text className="fade label--brand" style={{ "--d": "1.4s" } as React.CSSProperties} x="300" y="346" textAnchor="middle">YOUR BRAND</text>
-                <text className="fade" style={{ "--d": "2s" } as React.CSSProperties} x="422" y="339">Product</text>
-                <text className="fade" style={{ "--d": "2s" } as React.CSSProperties} x="218" y="232" textAnchor="end">Press</text>
-                <text className="fade label--strong" style={{ "--d": "1.6s" } as React.CSSProperties} x="380" y="175" textAnchor="end">Communities</text>
-                <text className="fade" style={{ "--d": "2.1s" } as React.CSSProperties} x="492" y="211">Experts</text>
-                <text className="fade label--strong" style={{ "--d": "1.8s" } as React.CSSProperties} x="418" y="88" textAnchor="end">AI answers</text>
-              </g>
-            </svg>
+          {/* 3D web of what we read for a brand: drag to turn, hover to light connections */}
+          <div className="hero__art">
+            <HeroNetwork />
           </div>
         </div>
       </section>

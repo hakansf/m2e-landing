@@ -46,11 +46,21 @@ export default function DotField() {
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, w, h);
-      // the CSS field covers the right 52% of the hero and fades in from its left edge
-      const x0 = w * 0.48;
-      const fadeEnd = x0 + w * 0.52 * 0.38;
+      // match the CSS field: the home hero covers the full width with a soft
+      // fade from the left (behind the text scrim); page headers cover the
+      // right 52% and fade in from that edge
+      const full = hero.classList.contains("hero") && w > 760;
+      const x0 = full ? 0 : w * 0.48;
+      const coverage = (gx: number) => {
+        if (full) {
+          const t = gx / w;
+          return t < 0.3 ? 0.25 + (t / 0.3) * 0.35 : t < 0.6 ? 0.6 + ((t - 0.3) / 0.3) * 0.4 : 1;
+        }
+        const fadeEnd = x0 + w * 0.52 * 0.38;
+        return Math.min(1, Math.max(0, (gx - x0) / (fadeEnd - x0)));
+      };
       for (let gx = x0 + STEP / 2; gx < w; gx += STEP) {
-        const edge = Math.min(1, Math.max(0, (gx - x0) / (fadeEnd - x0)));
+        const edge = coverage(gx);
         for (let gy = STEP / 2; gy < h; gy += STEP) {
           const d = Math.hypot(gx - point.x, gy - point.y);
           if (d > RADIUS) continue;
