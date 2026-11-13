@@ -299,9 +299,6 @@ export default function HeroNetwork() {
   return (
     <div className="hero-net">
       <canvas ref={ref} className="hero-net__canvas" aria-hidden="true" />
-      <p className="hero-net__hint" aria-hidden="true">
-        <span className="sq"></span>Point to pause · drag to turn
-      </p>
     </div>
   );
 }
