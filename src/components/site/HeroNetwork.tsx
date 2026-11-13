@@ -3,10 +3,13 @@
 import { useEffect, useRef } from "react";
 
 /* The home hero graphic: a 3D web of what we read for a brand, in the deck's
-   style (thin lines, square nodes, mono labels). Drag to turn it; hover a
-   node to light its connections. It assembles once on load, then holds
-   still: it never moves on its own and never follows the cursor (Hakan's
-   preference). Hand-built on a 2D canvas, no 3D library. */
+   style (thin lines, square nodes, mono labels). It assembles on load, then
+   turns slowly so it's clear you can play with it. Pointing at it pauses the
+   turn (so labels can be read), dragging turns it by hand, and hovering a node
+   lights its connections; moving away lets it drift again. The front is lit
+   and the back falls away into shadow. Subreddit squares are sized by roughly
+   how big each community is. Still for reduced motion and while off screen.
+   Hand-built on a 2D canvas, no 3D library. */
 
 type Group = { hub: string; members: string[] };
 
@@ -25,7 +28,15 @@ const CROSS: [string, string][] = [
   ["r/BuyItForLife", "Is it worth it?"], ["Power users", "Playbooks"], ["Support", "Search rank"],
 ];
 
+// relative community size (no numbers shown): 1 = small, 2 = big
+const SCALE: Record<string, number> = {
+  "r/personalfinance": 2, "r/SkincareAddiction": 1.45, "r/running": 1.4,
+  "r/BuyItForLife": 1.35, "r/coffee": 1.2, "r/shaving": 0.95,
+};
+const SPIN = 0.16; // radians per second when idle (about one turn every 40s)
+
 type Node = { id: number; label: string; kind: "brand" | "hub" | "member"; x: number; y: number; z: number };
+const baseSize = (n: Node) => n.kind === "brand" ? 18 : n.kind === "hub" ? 12 : 7 * (SCALE[n.label] ?? 1);
 
 function build() {
   const nodes: Node[] = [{ id: 0, label: BRAND, kind: "brand", x: 0, y: 0, z: 0 }];
@@ -85,6 +96,7 @@ export default function HeroNetwork() {
     let assemble = reduce ? 1 : 0;
     const t0 = performance.now();
     let hover = -1, dragging = false, lastX = 0, lastY = 0;
+    let over = false, onScreen = true, drift = 0, lastT = performance.now();
     let projected: { x: number; y: number; z: number; s: number }[] = [];
 
     const resize = () => {
@@ -99,14 +111,22 @@ export default function HeroNetwork() {
         const p = Math.min(1, (performance.now() - t0) / 1600);
         assemble = 1 - Math.pow(1 - p, 3);
       }
+      const now = performance.now(), dt = Math.min(0.05, (now - lastT) / 1000);
+      lastT = now;
+      // the idle turn eases out when the pointer is over it, back in after
+      const wantDrift = reduce || over || dragging ? 0 : 1;
+      drift += (wantDrift - drift) * Math.min(1, dt * 5);
+      if (Math.abs(wantDrift - drift) < 0.02) drift = wantDrift;
       if (!dragging) {
-        yaw += vYaw; pitch += vPitch;
+        yaw += vYaw + SPIN * dt * drift; pitch += vPitch;
         vYaw *= 0.93; vPitch *= 0.93;
+        // drift back toward a gentle downward tilt while turning on its own
+        pitch += (-0.28 - pitch) * dt * 0.4 * drift;
       }
       pitch = Math.max(-1.1, Math.min(1.1, pitch));
       const spin = yaw + (1 - assemble) * -0.9;        // the one-time settle on load
       const cy = Math.cos(spin), sy = Math.sin(spin), cp = Math.cos(pitch), sp = Math.sin(pitch);
-      const R = Math.min(w, h) * 0.45, cx0 = w / 2, cy0 = h / 2;
+      const R = Math.min(w, h) * 0.46, cx0 = w / 2, cy0 = h / 2;
 
       projected = nodes.map((n) => {
         const k = assemble;
@@ -120,7 +140,11 @@ export default function HeroNetwork() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, w, h);
       const lit = hover >= 0 ? neighbors[hover] : null;
-      const depthAlpha = (z: number) => 0.18 + 0.82 * ((z + 1.4) / 2.8);
+      // front lit, back in shadow: z runs about -1.1 (back) to 1.1 (front)
+      const depthAlpha = (z: number) => {
+        const t = Math.max(0, Math.min(1, (z + 1.15) / 2.3));
+        return 0.07 + 0.93 * t ** 1.7;
+      };
 
       // lines, far ones first
       const order = edges.map((e, i) => i).sort((a, b) =>
@@ -130,8 +154,8 @@ export default function HeroNetwork() {
         const pa = projected[a], pb = projected[b];
         const on = hover >= 0 && (a === hover || b === hover);
         const al = depthAlpha((pa.z + pb.z) / 2) * (hover >= 0 && !on ? 0.35 : 1);
-        ctx.strokeStyle = on ? `rgba(0, 188, 212, ${Math.min(1, al + 0.3)})` : `rgba(255, 255, 255, ${al * 0.42})`;
-        ctx.lineWidth = on ? 1.4 : 1;
+        ctx.strokeStyle = on ? `rgba(0, 188, 212, ${Math.min(1, al + 0.3)})` : `rgba(255, 255, 255, ${al * 0.5})`;
+        ctx.lineWidth = on ? 1.4 : 0.6 + 0.7 * Math.max(0, (pa.z + pb.z) / 2);
         ctx.beginPath();
         // a slight curve, like the deck's lines
         const mx = (pa.x + pb.x) / 2 + (pb.y - pa.y) * 0.08, my = (pa.y + pb.y) / 2 - (pb.x - pa.x) * 0.08;
@@ -147,16 +171,24 @@ export default function HeroNetwork() {
         const n = nodes[i], p = projected[i];
         const focus = i === hover || (lit?.has(i) ?? false);
         const dim = hover >= 0 && !focus ? 0.35 : 1;
-        const al = depthAlpha(p.z) * dim;
-        const size = (n.kind === "brand" ? 16 : n.kind === "hub" ? 11 : 7) * p.s;
+        // the brand at the centre always stays lit
+        const al = (n.kind === "brand" ? 1 : depthAlpha(p.z)) * dim;
+        const size = baseSize(n) * p.s;
+        const lift = Math.max(0, p.z);              // how far toward the viewer
         if (n.kind === "member") {
-          ctx.fillStyle = focus ? "#00bcd4" : `rgba(58, 68, 72, ${Math.min(1, al + 0.2)})`;
-          ctx.strokeStyle = `rgba(160, 175, 180, ${al * 0.8})`;
+          // grey squares that brighten as they come forward
+          const g = Math.round(40 + 70 * lift);
+          ctx.fillStyle = focus ? "#00bcd4" : `rgba(${g}, ${g + 10}, ${g + 14}, ${Math.min(1, al + 0.1)})`;
+          ctx.strokeStyle = `rgba(${170 + 60 * lift}, ${185 + 55 * lift}, ${190 + 55 * lift}, ${al * 0.9})`;
           ctx.fillRect(p.x - size / 2, p.y - size / 2, size, size);
           ctx.strokeRect(p.x - size / 2 + 0.5, p.y - size / 2 + 0.5, size - 1, size - 1);
         } else {
-          ctx.fillStyle = `rgba(0, 188, 212, ${Math.min(1, al + 0.15)})`;
+          // cyan nodes glow when they're at the front
+          ctx.shadowColor = "rgba(0, 188, 212, 0.75)";
+          ctx.shadowBlur = (n.kind === "brand" ? 16 : 10 * lift) * dim;
+          ctx.fillStyle = `rgba(0, 188, 212, ${Math.min(1, al + 0.1)})`;
           ctx.fillRect(p.x - size / 2, p.y - size / 2, size, size);
+          ctx.shadowBlur = 0;
         }
       }
 
@@ -173,7 +205,7 @@ export default function HeroNetwork() {
           const n = nodes[i], p = projected[i];
           const focus = i === hover || (lit?.has(i) ?? false);
           if (n.kind === "member" && !focus && p.z < 0.1) continue;
-          const size = (n.kind === "brand" ? 16 : n.kind === "hub" ? 11 : 7) * p.s;
+          const size = baseSize(n) * p.s;
           ctx.font = `${n.kind === "member" ? 400 : 500} ${n.kind === "brand" ? 13 : 11}px "IBM Plex Mono", ui-monospace, monospace`;
           const text = n.kind === "member" ? n.label : n.label.toUpperCase();
           const tw = ctx.measureText(text).width;
@@ -192,16 +224,16 @@ export default function HeroNetwork() {
           placed.push(box);
           const dim = hover >= 0 && !focus ? 0.35 : 1;
           const la = n.kind === "member" ? Math.max(0, Math.min(1, (p.z - 0.1) * 2.2)) : 1;
-          const a = (focus ? 1 : la * depthAlpha(p.z) * dim) * fade;
+          const a = (focus || n.kind === "brand" ? 1 : la * depthAlpha(p.z) * dim) * fade;
           ctx.fillStyle = `rgba(255,255,255,${n.kind === "member" ? a * 0.85 : a})`;
           ctx.fillText(text, tx, p.y);
         }
       }
 
-      const moving = assemble < 1 || Math.abs(vYaw) > 0.0004 || Math.abs(vPitch) > 0.0004;
-      if (moving) raf = requestAnimationFrame(draw);
+      const moving = assemble < 1 || drift > 0 || Math.abs(vYaw) > 0.0004 || Math.abs(vPitch) > 0.0004;
+      if (moving && onScreen && !document.hidden) raf = requestAnimationFrame(draw);
     };
-    const kick = () => { if (!raf) raf = requestAnimationFrame(draw); };
+    const kick = () => { if (!raf) { lastT = performance.now(); raf = requestAnimationFrame(draw); } };
 
     const pick = (x: number, y: number) => {
       let best = -1, bd = 16;
@@ -234,7 +266,13 @@ export default function HeroNetwork() {
       if (reduce) { vYaw = vPitch = 0; }
       kick();
     };
-    const leave = () => { if (hover !== -1) { hover = -1; kick(); } };
+    const enter = (e: PointerEvent) => { if (e.pointerType === "mouse") { over = true; kick(); } };
+    const leave = () => { over = false; hover = -1; kick(); };
+    // only turn while the hero is on screen and the tab is visible
+    const io = new IntersectionObserver(([en]) => { onScreen = en.isIntersecting; if (onScreen) kick(); });
+    io.observe(canvas);
+    const vis = () => { if (!document.hidden) kick(); };
+    document.addEventListener("visibilitychange", vis);
 
     resize(); kick();
     const ro = new ResizeObserver(() => { resize(); kick(); });
@@ -245,8 +283,11 @@ export default function HeroNetwork() {
     canvas.addEventListener("pointerup", up);
     canvas.addEventListener("pointercancel", up);
     canvas.addEventListener("pointerleave", leave);
+    canvas.addEventListener("pointerenter", enter);
     return () => {
-      ro.disconnect(); cancelAnimationFrame(raf);
+      ro.disconnect(); io.disconnect(); cancelAnimationFrame(raf);
+      document.removeEventListener("visibilitychange", vis);
+      canvas.removeEventListener("pointerenter", enter);
       canvas.removeEventListener("pointerdown", down);
       canvas.removeEventListener("pointermove", move);
       canvas.removeEventListener("pointerup", up);
@@ -259,7 +300,7 @@ export default function HeroNetwork() {
     <div className="hero-net">
       <canvas ref={ref} className="hero-net__canvas" aria-hidden="true" />
       <p className="hero-net__hint" aria-hidden="true">
-        <span className="sq"></span>Drag to explore
+        <span className="sq"></span>Point to pause · drag to turn
       </p>
     </div>
   );

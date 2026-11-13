@@ -2141,3 +2141,9 @@ p, li, blockquote, figcaption { text-wrap: pretty; }
   .hero__art { z-index: 1; pointer-events: none; }
   .hero-net__hint { display: none; }
 }
+
+/* Hero network: bigger on desktop, bleeding a little past its column */
+@media (min-width: 961px) {
+  .hero-net { width: 128%; margin-left: -18%; aspect-ratio: 1 / 1; max-height: 760px; }
+  .hero-net__hint { right: 10%; }
+}
