@@ -2083,3 +2083,7 @@ p, li, blockquote, figcaption { text-wrap: pretty; }
   color: var(--paper);
 }
 .page-hero + .meme-def { padding-top: calc(var(--section-y) * 0.6); border-top: 1px solid var(--rule-dark); }
+
+/* Team portraits: stipple on white (Nov 2026). A hairline frame keeps the
+   white portrait from melting into the white section. */
+.person__photo { background: var(--paper); border: 1px solid var(--rule-light); }
