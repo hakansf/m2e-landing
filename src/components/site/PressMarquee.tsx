@@ -1,19 +1,31 @@
 import Link from "next/link";
 import { PRESS_OUTLETS } from "@/lib/site-config";
 
-/* A slow strip of outlets that have covered the team's work.
-   Pauses on hover; holds still for people who turn off motion. */
+/* A slow strip of outlets that have covered the team's work. Each name (or
+   logo) opens that outlet's most recent article. Pauses on hover so a name
+   can be clicked; holds still for people who turn off motion. */
 export default function PressMarquee() {
-  const row = (hidden: boolean) => (
-    <ul className="marquee__row" aria-hidden={hidden || undefined}>
+  // the belt holds two copies so it loops seamlessly; the second copy is
+  // hidden from screen readers and keyboard focus
+  const row = (copy: boolean) => (
+    <ul className="marquee__row" aria-hidden={copy || undefined}>
       {PRESS_OUTLETS.map((o) => (
         <li key={o.name}>
-          {o.logo ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img className="marquee__logo" src={o.logo} alt={hidden ? "" : o.name} />
-          ) : (
-            o.name
-          )}
+          <a
+            className="marquee__link"
+            href={o.url}
+            target="_blank"
+            rel="noopener"
+            tabIndex={copy ? -1 : undefined}
+            aria-label={copy ? undefined : `${o.name}: read the latest coverage (opens in a new tab)`}
+          >
+            {o.logo ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img className="marquee__logo" src={o.logo} alt="" />
+            ) : (
+              o.name
+            )}
+          </a>
         </li>
       ))}
     </ul>

@@ -61,7 +61,7 @@ export default function PageEffects() {
   // soft cyan light sits under the cursor (styles in site.css).
   useEffect(() => {
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-    const SPOT = ".service, .feature, .step, .service-block__out, .creds__list li, .quote-card, .community, .press-card, .camp";
+    const SPOT = ".service, .feature, .step, .service-block__out, .creds__list li, .quote-card, .press-card, .camp";
     const move = (e: PointerEvent) => {
       const card = (e.target as Element | null)?.closest<HTMLElement>(SPOT);
       if (!card) return;

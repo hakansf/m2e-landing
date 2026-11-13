@@ -43,7 +43,7 @@ export default function HomePage() {
             {/* the headline runs into this line: "From LOLs to LLMs… we harness…" */}
             <p className="lede">…we harness the power of online culture as a force to strengthen your business.</p>
             <p className="hero__sub">
-              M2E reads the communities that shape your reputation (what people believe, who they trust, and why) and turns it into strategy. Then we fortify your capability to show up where it matters most for the long run: on Reddit, in search, and in the AI answers people now trust.
+              M2E reads the communities that shape your reputation (what people believe, who they trust, and why) and turns it into strategy. Then we help your team show up there for the long run: on Reddit, in search, and in the AI answers people now trust.
             </p>
             <p className="hero__tagline">Understand the questions. Be part of the answers.</p>
             <div className="btn-row">
@@ -100,7 +100,7 @@ export default function HomePage() {
       {/* ============================== CREDENTIALS ============================== */}
       <section className="creds" aria-labelledby="creds-title">
         <div className="wrap">
-          <h2 className="creds__lead" id="creds-title">The team that helped build Reddit’s brand business, now on your side.</h2>
+          <h2 className="creds__lead" id="creds-title">We spent years helping build Reddit’s brand business. Now we do that work for brands.</h2>
           <ul className="creds__list">
             <li>
               <strong>Founded KarmaLab</strong>
@@ -335,15 +335,15 @@ export default function HomePage() {
         <div className="wrap">
           <div className="section-head">
             <span className="tag">The team</span>
-            <h2 className="display h2" id="why-title">Built by the people who built Reddit’s brand business</h2>
+            <h2 className="display h2" id="why-title">Who you’ll work with</h2>
             <p className="body-lg muted-light">
-              We build your team’s capability, not your dependence on us, so your presence keeps working after we step back.
+              A small team. You work with the four of us directly.
             </p>
           </div>
           <ul className="team">
             <li className="person">
               <div className="person__media" data-eye="0.583,0.397" data-label="Partnerships">
-                <img className="person__photo" src="/assets/img/team/hakan.jpg" alt="Hakan Degirmenci, stipple portrait" width="720" height="720" loading="lazy" />
+                <img className="person__photo" src="/assets/img/team/hakan.jpg" alt="Hakan Degirmenci" width="720" height="720" loading="lazy" />
                 <span className="sq" aria-hidden="true"></span>
               </div>
               <h3>Hakan Degirmenci</h3>
@@ -353,7 +353,7 @@ export default function HomePage() {
             </li>
             <li className="person">
               <div className="person__media" data-eye="0.380,0.520" data-label="Storytelling">
-                <img className="person__photo" src="/assets/img/team/will.jpg" alt="Will Cady, stipple portrait" width="720" height="720" loading="lazy" />
+                <img className="person__photo" src="/assets/img/team/will.jpg" alt="Will Cady" width="720" height="720" loading="lazy" />
                 <span className="sq" aria-hidden="true"></span>
               </div>
               <h3>Will Cady</h3>
@@ -363,7 +363,7 @@ export default function HomePage() {
             </li>
             <li className="person">
               <div className="person__media" data-eye="0.494,0.432" data-label="Intelligence">
-                <img className="person__photo" src="/assets/img/team/vanessa.jpg" alt="Vanessa Hensler, stipple portrait" width="720" height="720" loading="lazy" />
+                <img className="person__photo" src="/assets/img/team/vanessa.jpg" alt="Vanessa Hensler" width="720" height="720" loading="lazy" />
                 <span className="sq" aria-hidden="true"></span>
               </div>
               <h3>Vanessa Hensler</h3>
@@ -373,7 +373,7 @@ export default function HomePage() {
             </li>
             <li className="person">
               <div className="person__media" data-eye="0.589,0.389" data-label="Enablement">
-                <img className="person__photo" src="/assets/img/team/rachelle.jpg" alt="Rachelle Cady, stipple portrait" width="720" height="720" loading="lazy" />
+                <img className="person__photo" src="/assets/img/team/rachelle.jpg" alt="Rachelle Cady" width="720" height="720" loading="lazy" />
                 <span className="sq" aria-hidden="true"></span>
               </div>
               <h3>Rachelle Cady</h3>
@@ -394,9 +394,9 @@ export default function HomePage() {
         <div className="wrap">
           <div className="section-head">
             <span className="tag">In the press</span>
-            <h2 className="display h2" id="press-title">Trusted voices on Reddit strategy</h2>
+            <h2 className="display h2" id="press-title">What we’ve said, and where</h2>
             <p className="body-lg muted-light">
-              Since 2016, the industry has called on our team to explain what’s happening on Reddit and what it means for brands.
+              Since 2016, reporters and conference stages have asked our team what’s going on with Reddit and what it means for brands.
             </p>
           </div>
           <ul className="press-cards">

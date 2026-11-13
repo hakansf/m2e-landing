@@ -18,8 +18,8 @@ Marketing site for **Memes to an End (M2E)**. Designed and first built by Will C
   - `SHOW.clients = true` reveals the "Trusted by" client logo bar (marked `data-flag="clients"`).
   - `QUOTES` — client quotes for the home page "In their words" section. Short attributed quotes, not case studies. First one shows large, the rest as cards; a quote only appears once its `text` is filled in.
   - `TEAM_LINKEDIN` — profile URLs for the LinkedIn icons under each team name (home + About). An empty URL shows the icon without a link.
-  - `COMMUNITIES` — tiles for the home "Every community has a culture" gallery (image + subreddit + one line about its culture, never numbers).
-  - `PRESS_OUTLETS` — names in the home press marquee; only outlets with confirmed coverage on the Press page.
+  - `COMMUNITIES` — cards for the home "Every community has a culture" gallery. Front is the photo only; hover (desktop) or tap (phone) turns the card over to show the subreddit, `line` (the culture) and `insight` (what we'd tell a brand there). Culture and behavior only, never numbers.
+  - `PRESS_OUTLETS` — names in the home press marquee; only outlets with confirmed coverage on the Press page. Each links to that outlet's most recent article there; update `url` when a newer one is added.
 - `src/app/api/contact/route.ts` — contact form backend. Sends to info@m2e.ai through Resend (`RESEND_API_KEY` is set in Vercel).
 - `src/app/privacy`, `src/app/terms` — older legal pages with their own styling, not yet linked from the new footer.
 - `public/assets/img/` — logos, favicon, OG image, team portraits.
@@ -36,6 +36,9 @@ Marketing site for **Memes to an End (M2E)**. Designed and first built by Will C
 - **Signature details:** thin frame lines and vertical side text, small cyan square bullets, cyan pill labels (`.tag`, used sparingly), the hero's network of curved lines and squares.
 - **Dot texture:** a fine teal dot grid on the right side of dark areas and ink dots on the cyan band, fading in from the left so it never sits under body copy (`--dots` / `--dots-ink` in site.css). Keep it subtle and off white sections.
 - **Hover:** one subtle cyan glow on boxes and cards (`--glow`). Portraits have no hover effect.
+- **Header:** sticky and nearly opaque (97%) so headlines scrolling underneath don't show through. Hakan found the lighter version hard to read.
+- **Scale:** Hakan found the site too big on a laptop (Nov 2026); the "Scale pass" block at the end of site.css brings headlines, ledes and spacing down. Keep new sections at that scale.
+- **Team portraits:** real photos, cut out and placed on one dark teal backdrop with the same grade, faces aligned to the same size (`public/assets/img/team/`). The earlier stipple illustrations were dropped.
 - **Effects (21st.dev-style, hand-built):** reactive dots in the home hero, every inner page header and the contact section (`DotField.tsx`: dots near the cursor brighten, nothing moves; off on touch and reduced motion); spotlight cards (soft cyan light under the cursor on cards, set by `PageEffects`); scroll reveals (headings, cards, tiles, team and press items fade and rise in one after another, heading rules draw in, community images settle from a slight zoom; added by `PageEffects`, so nothing is hidden without JavaScript or with reduced motion); and the press marquee (`PressMarquee.tsx`: pauses on hover, still for reduced motion).
 - **Press marquee logos:** files in `public/assets/img/press/`, set as `logo` in `PRESS_OUTLETS`. Any colour works; CSS shows them all in white. Outlets without a file show their name in Impact.
 - **Community imagery:** tangible things, not people: zoomed-in, textured, product-focused shots of an object that stands for a subreddit's culture (latte for r/coffee, banknote for r/personalfinance, shaving cream for r/shaving). Dark and low-key, graded to the coffee image's teal; other colours may survive as accents but teal leads. 4:5 portraits, 800 × 1000, in `public/assets/img/communities/`. All images should look like one series.
@@ -43,6 +46,7 @@ Marketing site for **Memes to an End (M2E)**. Designed and first built by Will C
 - **Line breaks:** headlines use `text-wrap: balance` so no line ends with a lone word. Use `<span className="keep">` to hold a phrase on one line (wider screens only) and `&nbsp;` to tie two words together everywhere.
 - **Navigation:** Services, About, Press, plus the "Start a conversation" button. There is deliberately no separate "Contact" nav item (the button goes there); the footer still lists Contact.
 - **Hero line:** the headline runs into the line below it: "From LOLs to LLMs…" / "…we harness the power of online culture…".
+- **Manifesto link:** "Read our manifesto" lands on the Meme definition at the top of the About page (`#manifesto`).
 - **Spacing** was deliberately tightened; standard section padding is `--section-y`, short sections use `.section--tight`.
 
 ## Copy guardrails
@@ -51,7 +55,7 @@ Marketing site for **Memes to an End (M2E)**. Designed and first built by Will C
 - No AI-citation-share percentages (they date quickly). Stats must have a visible, working source link.
 - Keep these claims worded exactly: "Founded KarmaLab", "Behind Reddit's biggest brand moments", "Built Reddit's teams and offices", "Research led by USC faculty", and "Since 2016" on press copy.
 - Positioning: M2E builds the client's own capability (enablement). Don't imply M2E posts on a brand's behalf as the long-term model.
-- Tone: confident, plain, specific. Sentence case for body copy and buttons (buttons display uppercase via CSS). Primary CTA everywhere: "Start a conversation."
+- Tone: confident, plain, specific. Avoid slogan-style rhymes and taglines ("We've been on the inside. Now we're on your side." read like a law-firm ad and was cut). Sentence case for body copy and buttons (buttons display uppercase via CSS). Primary CTA everywhere: "Start a conversation."
 - Keep the footer line "M2E is not affiliated with or endorsed by Reddit."
 
 ## Team (current titles)

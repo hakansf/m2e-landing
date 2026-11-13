@@ -19,11 +19,15 @@ export const TEAM_LINKEDIN = {
 export type TeamMember = keyof typeof TEAM_LINKEDIN;
 
 /* COMMUNITY GALLERY ("Every community has a culture", home page)
-   One tile per community. Images live in public/assets/img/communities/
-   as 4:5 portraits (800 × 1000), dark backgrounds, teal/magenta grade, so
-   the set reads as one series. To add one: drop the image in that folder
-   and add a line here. Keep the descriptions about culture, never numbers. */
-export type Community = { sub: string; image: string; alt: string; line: string };
+   One card per community. The front is just the photo; hovering (or tapping
+   on a phone) turns the card over to show:
+     line    — what the culture is like
+     insight — what we'd tell a brand that wants to show up there
+   Keep both about culture and behavior, never numbers or data claims.
+   Images live in public/assets/img/communities/ as 4:5 portraits
+   (800 × 1000): tangible, close-up objects, dark, graded to the coffee
+   image's teal so the set reads as one series. */
+export type Community = { sub: string; image: string; alt: string; line: string; insight: string };
 
 export const COMMUNITIES: Community[] = [
   {
@@ -31,50 +35,56 @@ export const COMMUNITIES: Community[] = [
     image: "/assets/img/communities/coffee.jpg",
     alt: "Teal latte art in a black cup, steam rising",
     line: "Home brewers and espresso obsessives. High trust, low tolerance for brand posts.",
+    insight: "Talk craft before product. A brand that geeks out about grind size with them gets listened to; one that pushes a machine gets ignored.",
   },
   {
     sub: "r/personalfinance",
     image: "/assets/img/communities/personalfinance.jpg",
     alt: "Close-up engraving of a hundred-dollar bill in teal light",
     line: "Careful savers who check every claim twice. Advice earns trust; pitches don't.",
+    insight: "Show the math. Plain fees and honest trade-offs earn more goodwill here than any rate promo.",
   },
   {
     sub: "r/mycology",
     image: "/assets/img/communities/mycology.jpg",
     alt: "Teal, magenta and ochre mushrooms arranged against black",
     line: "Foragers and citizen scientists. Precision is respect, and a wrong ID gets corrected fast.",
+    insight: "Cite your sources and let the experts correct you. Here, being willing to be wrong in public reads as credibility.",
   },
   {
     sub: "r/shaving",
     image: "/assets/img/communities/shaving.jpg",
     alt: "Swirls of teal shaving cream, close up",
     line: "Ritual over routine. Members trade technique and product notes like collectors.",
+    insight: "Respect the ritual. Samples and honest side-by-sides travel further here than any ad.",
   },
 ];
 
 /* PRESS MARQUEE (home page, under the credentials band)
    Outlets that have covered the team's work. Only list outlets with
-   confirmed coverage on the Press page.
+   confirmed coverage on the Press page. Each name links to that outlet's
+   most recent article on the Press page: when you add a newer one there,
+   update `url` here too.
    Logos: put each outlet's logo in public/assets/img/press/ (SVG best,
    transparent PNG fine) and set `logo`. Any colour works: the marquee shows
    every logo in white. Outlets without a logo file show their name instead. */
-export type Outlet = { name: string; logo?: string };
+export type Outlet = { name: string; url: string; logo?: string };
 
 export const PRESS_OUTLETS: Outlet[] = [
-  { name: "Adweek" },
-  { name: "CNBC" },
-  { name: "Variety" },
-  { name: "Digiday" },
-  { name: "The Drum" },
-  { name: "Newsweek" },
-  { name: "Engadget", logo: "/assets/img/press/engadget.svg" },
-  { name: "Marketing Dive" },
-  { name: "Modern Retail" },
-  { name: "WARC" },
-  { name: "Event Marketer" },
-  { name: "BizBash" },
-  { name: "LBB" },
-  { name: "Tubefilter" },
+  { name: "Adweek", url: "https://www.adweek.com/brand-marketing/remember-the-human-with-will-cady/" },
+  { name: "CNBC", url: "https://www.cnbc.com/2021/02/08/how-reddit-made-its-super-bowl-commercial-in-less-than-a-week.html" },
+  { name: "Variety", url: "https://variety.com/2023/digital/news/variety-entertainment-technology-summit-innovation-media-trendsetters-1235732051/" },
+  { name: "Digiday", url: "https://digiday.com/marketing/reddit-new-york-office-new-hire/" },
+  { name: "The Drum", url: "https://www.thedrum.com/news/2021/03/15/gone-fishing-why-marketers-should-be-loading-up-their-tackle-boxes" },
+  { name: "Newsweek", url: "https://www.newsweek.com/reddit-layer-what-how-use-new-adobe-1458798" },
+  { name: "Engadget", url: "https://engadget.com/reddit-adobe-photoshop-battle-streaming-170210802.html", logo: "/assets/img/press/engadget.svg" },
+  { name: "Marketing Dive", url: "https://www.marketingdive.com/news/reddit-sets-up-in-house-creative-agency-karmalab-to-scale-ad-business/600152/" },
+  { name: "Modern Retail", url: "https://www.modernretail.co/retailers/brands-are-increasingly-seeing-reddit-as-a-marketing-goldmine/" },
+  { name: "WARC", url: "https://www.warc.com/content/article/adobe-r-layer/134485" },
+  { name: "Event Marketer", url: "https://www.eventmarketer.com/article/reddit-returns-to-cannes-lions-with-reddit-recommends" },
+  { name: "BizBash", url: "https://www.bizbash.com/meetings/ces-2023-the-high-tech-inventions-and-high-level-activations-that-caught-our-eye" },
+  { name: "LBB", url: "https://lbbonline.com/news/how-reddit-recommendations-drive-business-for-brands" },
+  { name: "Tubefilter", url: "https://www.tubefilter.com/2017/03/01/reddit-twitch-live-stream-sxsw-ama/" },
 ];
 
 /* CLIENT QUOTES

@@ -29,25 +29,22 @@ export default function AboutPage() {
           </h1>
         </div>
       </section>
-      <section className="section section--light section--tight" aria-labelledby="meme-title">
+      <section className="section section--light section--tight" id="manifesto" aria-labelledby="meme-title">
         <div className="wrap definition">
           <div>
             <h2 className="definition__word" id="meme-title">Meme</h2>
             <p className="definition__pron">/miːm/ · noun</p>
           </div>
-          <p className="definition__def">
-            <em>Where our name comes from</em>
-            An idea that spreads from person to person within a culture.
-          </p>
+          <p className="definition__def">An idea that spreads from person to person within a culture.</p>
         </div>
       </section>
-      <section className="section section--light" id="manifesto" aria-labelledby="manifesto-title">
+      <section className="section section--light" aria-labelledby="manifesto-title">
         <div className="wrap">
           <span className="kicker" aria-hidden="true"></span>
           <h2 className="visually-hidden" id="manifesto-title">Manifesto</h2>
           <div className="prose">
             <p>
-              A meme is an idea that spreads from person to person within a culture. That&apos;s where we took our name, and it&apos;s still the whole job.
+              That&apos;s where our name comes from, and it&apos;s still the whole job.
             </p>
             <p>
               For twenty years, brands could buy their way into attention. Search traffic, social reach, paid placements. That world is shrinking. People now get answers from AI, and AI looks for something brands can&apos;t buy: consistent, credible, human agreement about what&apos;s true.
@@ -126,12 +123,12 @@ export default function AboutPage() {
         <div className="wrap">
           <div className="section-head">
             <span className="kicker" aria-hidden="true"></span>
-            <h2 className="display h2" id="team-title">We&apos;ve been on the inside. Now we&apos;re on your side.</h2>
+            <h2 className="display h2" id="team-title">The team</h2>
           </div>
           <ul className="team">
             <li className="person">
               <div className="person__media" data-eye="0.583,0.397" data-label="Partnerships">
-                <img className="person__photo" src="/assets/img/team/hakan.jpg" alt="Hakan Degirmenci, stipple portrait" width="720" height="720" loading="lazy" />
+                <img className="person__photo" src="/assets/img/team/hakan.jpg" alt="Hakan Degirmenci" width="720" height="720" loading="lazy" />
                 <span className="sq" aria-hidden="true"></span>
               </div>
               <h3>Hakan Degirmenci</h3>
@@ -143,7 +140,7 @@ export default function AboutPage() {
             </li>
             <li className="person">
               <div className="person__media" data-eye="0.380,0.520" data-label="Storytelling">
-                <img className="person__photo" src="/assets/img/team/will.jpg" alt="Will Cady, stipple portrait" width="720" height="720" loading="lazy" />
+                <img className="person__photo" src="/assets/img/team/will.jpg" alt="Will Cady" width="720" height="720" loading="lazy" />
                 <span className="sq" aria-hidden="true"></span>
               </div>
               <h3>Will Cady</h3>
@@ -157,7 +154,7 @@ export default function AboutPage() {
             </li>
             <li className="person">
               <div className="person__media" data-eye="0.494,0.432" data-label="Intelligence">
-                <img className="person__photo" src="/assets/img/team/vanessa.jpg" alt="Vanessa Hensler, stipple portrait" width="720" height="720" loading="lazy" />
+                <img className="person__photo" src="/assets/img/team/vanessa.jpg" alt="Vanessa Hensler" width="720" height="720" loading="lazy" />
                 <span className="sq" aria-hidden="true"></span>
               </div>
               <h3>Vanessa Hensler</h3>
@@ -169,7 +166,7 @@ export default function AboutPage() {
             </li>
             <li className="person">
               <div className="person__media" data-eye="0.589,0.389" data-label="Enablement">
-                <img className="person__photo" src="/assets/img/team/rachelle.jpg" alt="Rachelle Cady, stipple portrait" width="720" height="720" loading="lazy" />
+                <img className="person__photo" src="/assets/img/team/rachelle.jpg" alt="Rachelle Cady" width="720" height="720" loading="lazy" />
                 <span className="sq" aria-hidden="true"></span>
               </div>
               <h3>Rachelle Cady</h3>

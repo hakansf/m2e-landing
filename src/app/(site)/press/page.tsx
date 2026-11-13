@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Press",
-  description: "The people the industry calls to explain Reddit: years of coverage, interviews, and talks from the Memes to an End team in Adweek, Variety, Digiday, The Drum, and more.",
+  description: "Years of coverage, interviews, and talks from the Memes to an End team in Adweek, Variety, Digiday, The Drum, and more.",
   openGraph: {
     title: "Press — Memes to an End",
     description: "Memes to an End was founded by former Reddit leaders to help brands earn trust in the communities where people and AI form opinions.",
@@ -21,9 +21,9 @@ export default function PressPage() {
         <DotField />
         <div className="wrap">
           <span className="tag">In the press</span>
-          <h1 className="display h1" id="page-title">The people the industry calls to explain Reddit</h1>
+          <h1 className="display h1" id="page-title">Explaining Reddit since 2016</h1>
           <p className="lede">
-            Since 2016, reporters, brands, and conference stages have come to our team to understand what’s really happening on Reddit and why it matters. This is the record.
+            Interviews, talks, and coverage of the work, from the team that helped build Reddit’s brand business.
           </p>
         </div>
       </section>
