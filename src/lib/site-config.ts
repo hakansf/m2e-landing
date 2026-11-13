@@ -106,9 +106,10 @@ export type ClientQuote = {
 
 export const QUOTES: ClientQuote[] = [
   {
-    text: "Most brands think they can just run more ads on Reddit to show up in AI search. That’s not how it works. You have to build a real relationship with the community first, and Memes to an End is the only team I’ve seen that truly gets that.",
-    name: "Ellen VanderWilt",
-    title: "Director, Customer Marketing",
+    // approved by Ellen, word for word (Nov 2026)
+    text: "Most brands think they can just run more ads on Reddit to show up in AI search. That’s not how it works. You have to build a real relationship with the community first — and M2E is the only team I’ve seen that truly gets that. As AI changes how people discover brands, that combination of community expertise and AI visibility strategy is rare.",
+    name: "Ellen Vanderwilt",
+    title: "Director, Product Marketing",
     company: "Adobe",
     logo: "/assets/img/clients/adobe.png",
     photo: "/assets/img/clients/ellen-vanderwilt.jpg",
