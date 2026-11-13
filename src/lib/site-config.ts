@@ -44,14 +44,37 @@ export const COMMUNITIES: Community[] = [
     alt: "Teal, magenta and ochre mushrooms arranged against black",
     line: "Foragers and citizen scientists. Precision is respect, and a wrong ID gets corrected fast.",
   },
+  {
+    sub: "r/shaving",
+    image: "/assets/img/communities/shaving.jpg",
+    alt: "Swirls of teal shaving cream, close up",
+    line: "Ritual over routine. Members trade technique and product notes like collectors.",
+  },
 ];
 
 /* PRESS MARQUEE (home page, under the credentials band)
    Outlets that have covered the team's work. Only list outlets with
-   confirmed coverage on the Press page. */
-export const PRESS_OUTLETS = [
-  "Adweek", "CNBC", "Variety", "Digiday", "The Drum", "Newsweek", "Engadget",
-  "Marketing Dive", "Modern Retail", "WARC", "Event Marketer", "BizBash", "LBB", "Tubefilter",
+   confirmed coverage on the Press page.
+   Logos: put each outlet's logo in public/assets/img/press/ (SVG best,
+   transparent PNG fine) and set `logo`. Any colour works: the marquee shows
+   every logo in white. Outlets without a logo file show their name instead. */
+export type Outlet = { name: string; logo?: string };
+
+export const PRESS_OUTLETS: Outlet[] = [
+  { name: "Adweek" },
+  { name: "CNBC" },
+  { name: "Variety" },
+  { name: "Digiday" },
+  { name: "The Drum" },
+  { name: "Newsweek" },
+  { name: "Engadget", logo: "/assets/img/press/engadget.svg" },
+  { name: "Marketing Dive" },
+  { name: "Modern Retail" },
+  { name: "WARC" },
+  { name: "Event Marketer" },
+  { name: "BizBash" },
+  { name: "LBB" },
+  { name: "Tubefilter" },
 ];
 
 /* CLIENT QUOTES

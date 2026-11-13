@@ -7,7 +7,14 @@ export default function PressMarquee() {
   const row = (hidden: boolean) => (
     <ul className="marquee__row" aria-hidden={hidden || undefined}>
       {PRESS_OUTLETS.map((o) => (
-        <li key={o}>{o}</li>
+        <li key={o.name}>
+          {o.logo ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img className="marquee__logo" src={o.logo} alt={hidden ? "" : o.name} />
+          ) : (
+            o.name
+          )}
+        </li>
       ))}
     </ul>
   );

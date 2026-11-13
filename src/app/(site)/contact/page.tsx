@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import DotField from "@/components/site/DotField";
 import ContactForm from "@/components/site/ContactForm";
 
 /* Converted from Will's static contact.html. Edit the markup here;
@@ -17,6 +18,7 @@ export default function ContactPage() {
   return (
     <>
       <section className="section section--dark contact-page" id="contact" aria-labelledby="contact-title">
+        <DotField />
         <div className="wrap contact">
           <div>
             <span className="kicker" aria-hidden="true"></span>

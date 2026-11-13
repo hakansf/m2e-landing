@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-/* Reactive dot texture for the home hero.
+/* Reactive dot texture for the home hero and every page header.
    The CSS dot grid (.hero::after) stays as the base layer. This canvas only
    lights up the dots near the cursor, on the same 28px grid, so nothing
    moves: dots just brighten where you point and fade back when you leave.
@@ -15,7 +15,7 @@ export default function DotField() {
 
   useEffect(() => {
     const canvas = ref.current;
-    const hero = canvas?.closest<HTMLElement>(".hero");
+    const hero = canvas?.closest<HTMLElement>(".hero, .page-hero, .contact-page");
     if (!canvas || !hero) return;
     if (!window.matchMedia("(pointer: fine) and (prefers-reduced-motion: no-preference)").matches) return;
     const ctx = canvas.getContext("2d");

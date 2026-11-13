@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import DotField from "@/components/site/DotField";
 import Link from "next/link";
 
 /* Converted from Will's static services.html. Edit the markup here;
@@ -17,6 +18,7 @@ export default function ServicesPage() {
   return (
     <>
       <section className="page-hero" aria-labelledby="page-title">
+        <DotField />
         <div className="wrap">
           <span className="kicker" aria-hidden="true"></span>
           <h1 className="display h1" id="page-title">Everything you need to show up well</h1>
