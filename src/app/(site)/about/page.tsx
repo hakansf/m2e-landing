@@ -29,7 +29,7 @@ export default function AboutPage() {
           </h1>
         </div>
       </section>
-      <section className="section section--light section--tight" id="manifesto" aria-labelledby="meme-title">
+      <section className="section section--light" id="manifesto" aria-labelledby="meme-title">
         <div className="wrap definition">
           <div>
             <h2 className="definition__word" id="meme-title">Meme</h2>
@@ -37,12 +37,9 @@ export default function AboutPage() {
           </div>
           <p className="definition__def">An idea that spreads from person to person within a culture.</p>
         </div>
-      </section>
-      <section className="section section--light" aria-labelledby="manifesto-title">
         <div className="wrap">
-          <span className="kicker" aria-hidden="true"></span>
           <h2 className="visually-hidden" id="manifesto-title">Manifesto</h2>
-          <div className="prose">
+          <div className="prose manifesto-body">
             <p>
               That&apos;s where our name comes from, and it&apos;s still the whole job.
             </p>

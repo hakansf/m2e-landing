@@ -87,11 +87,22 @@ export const PRESS_OUTLETS: Outlet[] = [
   { name: "Tubefilter", url: "https://www.tubefilter.com/2017/03/01/reddit-twitch-live-stream-sxsw-ama/" },
 ];
 
-/* CLIENT QUOTES
-   Short, attributed quotes (not case studies). The first quote is shown
-   large; the rest sit in a row of cards below it. A quote only appears once
-   its `text` is filled in, so add new ones here as clients approve them. */
-export type ClientQuote = { text: string; name: string; title: string; company: string };
+/* CLIENT QUOTES ("In their words", home page)
+   Short, attributed quotes, not case studies, shown as cards four across.
+   logo:  white-on-transparent file in public/assets/img/clients/ (shown in
+          dark on the card); without one, the company name shows instead.
+   photo: square headshot in the same folder (shown as a circle).
+   Placeholders: a quote with empty `text` shows as a grey "quote coming"
+   card on preview links only. The live site (Vercel production) skips it,
+   so an unapproved slot never goes public. */
+export type ClientQuote = {
+  text: string;
+  name: string;
+  title: string;
+  company: string;
+  logo?: string;
+  photo?: string;
+};
 
 export const QUOTES: ClientQuote[] = [
   {
@@ -99,9 +110,11 @@ export const QUOTES: ClientQuote[] = [
     name: "Ellen VanderWilt",
     title: "Director, Customer Marketing",
     company: "Adobe",
+    logo: "/assets/img/clients/adobe.png",
+    photo: "/assets/img/clients/ellen-vanderwilt.jpg",
   },
-  // Waiting on quotes:
-  { text: "", name: "", title: "", company: "Amazon" },
+  // Placeholders until each quote is approved:
   { text: "", name: "", title: "", company: "Root Insurance" },
   { text: "", name: "", title: "", company: "Chime" },
+  { text: "", name: "", title: "", company: "Amazon" },
 ];

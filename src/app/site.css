@@ -1954,3 +1954,79 @@ p, li, blockquote, figcaption { text-wrap: pretty; }
 @media (prefers-reduced-motion: reduce) and (hover: hover) and (pointer: fine) {
   .flip:hover .flip__back { opacity: 1; }
 }
+
+/* --------------------------------------------------------------------------
+   Client quotes, four across (ClientQuotes.tsx)
+   -------------------------------------------------------------------------- */
+.client-quotes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+.client-quotes > li { display: flex; }
+.client-quote {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 26px 24px 24px;
+  background: var(--cloud);
+  border-top: 3px solid var(--cyan);
+  transition: box-shadow 0.25s ease;
+}
+.client-quote__brand { height: 40px; display: flex; align-items: center; }
+.client-quote__logo { height: 40px; width: auto; filter: brightness(0); opacity: 0.9; }
+.client-quote__name-mark {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--ink);
+}
+.client-quote__text {
+  margin: 0;
+  flex: 1;
+  font-size: 16px;
+  line-height: 1.55;
+  font-weight: 500;
+  color: var(--ink);
+}
+.client-quote__by { display: flex; align-items: center; gap: 12px; font-size: 13px; line-height: 1.4; color: var(--muted-light); }
+.client-quote__by strong { display: block; font-size: 15px; color: var(--ink); }
+.client-quote__photo {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px var(--paper), 0 0 0 3px var(--cyan);
+}
+.client-quote__photo--empty { display: inline-grid; place-items: center; background: #dfe3e5; box-shadow: none; }
+/* placeholders: visibly unfinished so nobody mistakes them for real quotes */
+.client-quote--placeholder { background: transparent; border: 1px dashed #b9c1c5; border-top: 3px dashed #b9c1c5; }
+.client-quote--placeholder .client-quote__text,
+.client-quote--placeholder .client-quote__name-mark,
+.client-quote--placeholder .client-quote__by strong { color: #8a959a; }
+@media (max-width: 1100px) { .client-quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .client-quotes { grid-template-columns: 1fr; } }
+@media (hover: hover) and (pointer: fine) {
+  .client-quote:not(.client-quote--placeholder):hover {
+    box-shadow: var(--glow);
+    background-image: radial-gradient(260px circle at var(--sx, 50%) var(--sy, 50%), rgba(0, 188, 212, 0.14), transparent 70%);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Less white space (Nov 2026): tighter sections, and the About page's
+   definition and manifesto now share one section
+   -------------------------------------------------------------------------- */
+:root { --section-y: clamp(52px, 5.4vw, 84px); }
+.section--tight { padding-block: clamp(40px, 4.2vw, 64px); }
+.section-head { margin-bottom: clamp(24px, 2.8vw, 36px); }
+.definition { align-items: center; }
+.definition__def { margin: 0; }
+.manifesto-body { margin-top: clamp(32px, 3.6vw, 48px); padding-top: clamp(28px, 3vw, 40px); border-top: 1px solid var(--rule-light); }

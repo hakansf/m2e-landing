@@ -16,7 +16,7 @@ Marketing site for **Memes to an End (M2E)**. Designed and first built by Will C
 - `src/components/site/` — `SiteChrome` (frame, header, footer), `SiteHeader` (mobile menu + current-page state), `SiteFooter`, `ContactForm`, `PageEffects` (hero network animation + approval switches).
 - `src/lib/site-config.ts` — the things that change most:
   - `SHOW.clients = true` reveals the "Trusted by" client logo bar (marked `data-flag="clients"`).
-  - `QUOTES` — client quotes for the home page "In their words" section. Short attributed quotes, not case studies. First one shows large, the rest as cards; a quote only appears once its `text` is filled in.
+  - `QUOTES` — client quotes for the home page "In their words" section: short attributed quotes (not case studies) as cards four across, each with the client's logo (`public/assets/img/clients/`, white on transparent, shown dark) and the person's photo. A quote with empty `text` is a placeholder card: it shows on Vercel preview links but is left off the live site (`VERCEL_ENV=production`).
   - `TEAM_LINKEDIN` — profile URLs for the LinkedIn icons under each team name (home + About). An empty URL shows the icon without a link.
   - `COMMUNITIES` — cards for the home "Every community has a culture" gallery. Front is the photo only; hover (desktop) or tap (phone) turns the card over to show the subreddit, `line` (the culture) and `insight` (what we'd tell a brand there). Culture and behavior only, never numbers.
   - `PRESS_OUTLETS` — names in the home press marquee; only outlets with confirmed coverage on the Press page. Each links to that outlet's most recent article there; update `url` when a newer one is added.

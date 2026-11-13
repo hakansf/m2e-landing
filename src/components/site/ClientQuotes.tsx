@@ -1,12 +1,49 @@
-import { QUOTES } from "@/lib/site-config";
+import { QUOTES, type ClientQuote } from "@/lib/site-config";
 
-/* "In their words": the first approved quote large, the rest as cards. */
+/* "In their words": client quotes as cards, four across.
+   Quotes with empty text are placeholders: they show on preview links so
+   the layout can be judged, and are left off the live site. */
+const IS_LIVE = process.env.VERCEL_ENV === "production";
+
+const initials = (s: string) =>
+  s.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+
+function Card({ q }: { q: ClientQuote }) {
+  const placeholder = !q.text.trim();
+  return (
+    <figure className={`client-quote${placeholder ? " client-quote--placeholder" : ""}`}>
+      <div className="client-quote__brand">
+        {q.logo ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img className="client-quote__logo" src={q.logo} alt={q.company} />
+        ) : (
+          <span className="client-quote__name-mark">{q.company}</span>
+        )}
+      </div>
+      <blockquote className="client-quote__text">
+        {placeholder ? `Quote from ${q.company} coming soon.` : `“${q.text}”`}
+      </blockquote>
+      <figcaption className="client-quote__by">
+        {q.photo ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img className="client-quote__photo" src={q.photo} alt="" width={56} height={56} loading="lazy" />
+        ) : (
+          <span className="client-quote__photo client-quote__photo--empty" aria-hidden="true">
+            {placeholder ? "" : initials(q.name)}
+          </span>
+        )}
+        <span>
+          <strong>{placeholder ? "Name, title" : q.name}</strong>
+          {placeholder ? q.company : [q.title, q.company].filter(Boolean).join(", ")}
+        </span>
+      </figcaption>
+    </figure>
+  );
+}
+
 export default function ClientQuotes() {
-  const quotes = QUOTES.filter((q) => q.text.trim());
+  const quotes = QUOTES.filter((q) => q.text.trim() || !IS_LIVE);
   if (!quotes.length) return null;
-  const [lead, ...rest] = quotes;
-  const who = (q: (typeof quotes)[number]) => [q.title, q.company].filter(Boolean).join(", ");
-
   return (
     <section className="section section--light" aria-labelledby="voice-title">
       <div className="wrap">
@@ -14,31 +51,13 @@ export default function ClientQuotes() {
           <span className="kicker" aria-hidden="true"></span>
           <h2 className="display h2" id="voice-title">In their words</h2>
         </div>
-        <figure className="quote">
-          <span className="quote__mark" aria-hidden="true">“</span>
-          <div>
-            <blockquote>{lead.text}</blockquote>
-            <figcaption>
-              <strong>{lead.name}</strong>
-              {who(lead)}
-            </figcaption>
-          </div>
-        </figure>
-        {rest.length > 0 && (
-          <ul className="quote-grid">
-            {rest.map((q) => (
-              <li key={q.name + q.company}>
-                <figure className="quote-card">
-                  <blockquote>{q.text}</blockquote>
-                  <figcaption>
-                    <strong>{q.name}</strong>
-                    {who(q)}
-                  </figcaption>
-                </figure>
-              </li>
-            ))}
-          </ul>
-        )}
+        <ul className="client-quotes">
+          {quotes.map((q) => (
+            <li key={q.company}>
+              <Card q={q} />
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

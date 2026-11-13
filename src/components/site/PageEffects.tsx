@@ -32,7 +32,7 @@ export default function PageEffects() {
   useEffect(() => {
     if (!window.matchMedia("(prefers-reduced-motion: no-preference)").matches) return;
     const REVEAL = [
-      ".section-head", ".service", ".feature", ".step", ".community", ".quote", ".quote-card",
+      ".section-head", ".service", ".feature", ".step", ".community", ".quote", ".quote-card", ".client-quote",
       ".person", ".creds__list li", ".press-card", ".camp", ".press-row", ".service-block",
       ".faq > *", ".beliefs > *", ".closer", ".payoff__line",
     ].join(", ");
@@ -61,7 +61,7 @@ export default function PageEffects() {
   // soft cyan light sits under the cursor (styles in site.css).
   useEffect(() => {
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-    const SPOT = ".service, .feature, .step, .service-block__out, .creds__list li, .quote-card, .press-card, .camp";
+    const SPOT = ".service, .feature, .step, .service-block__out, .creds__list li, .quote-card, .client-quote, .press-card, .camp";
     const move = (e: PointerEvent) => {
       const card = (e.target as Element | null)?.closest<HTMLElement>(SPOT);
       if (!card) return;
