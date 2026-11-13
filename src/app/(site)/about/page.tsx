@@ -29,17 +29,35 @@ export default function AboutPage() {
           </h1>
         </div>
       </section>
-      <section className="section section--light" id="manifesto" aria-labelledby="meme-title">
-        <div className="wrap definition">
-          <div>
-            <h2 className="definition__word" id="meme-title">Meme</h2>
-            <p className="definition__pron">/miːm/ · noun</p>
-          </div>
-          <p className="definition__def">An idea that spreads from person to person within a culture.</p>
+      {/* The Meme definition, set as the logo: MEME lit, "s to an end" faded */}
+      <section className="section section--dark meme-def" id="manifesto" aria-labelledby="meme-title">
+        <div className="wrap">
+          <h2 className="meme-word" id="meme-title" aria-label="Meme">
+            <span className="meme-word__lit" aria-hidden="true">Meme</span>
+            <span className="meme-word__dim" aria-hidden="true">
+              s
+              <span className="meme-word__stack">
+                <span>to</span>
+                <span>an</span>
+              </span>
+              end
+            </span>
+          </h2>
+          <p className="meme-pron">
+            <em>noun</em> <span className="meme-pron__bar" aria-hidden="true">|</span> (mēm, MEEM)
+          </p>
+          <ol className="meme-senses">
+            <li>
+              <span className="meme-senses__n" aria-hidden="true">1</span>
+              <p>an idea, behavior, style, or usage that spreads from person to person within a culture</p>
+            </li>
+          </ol>
         </div>
+      </section>
+      <section className="section section--light" aria-labelledby="manifesto-title">
         <div className="wrap">
           <h2 className="visually-hidden" id="manifesto-title">Manifesto</h2>
-          <div className="prose manifesto-body">
+          <div className="prose">
             <p>
               That&apos;s where our name comes from, and it&apos;s still the whole job.
             </p>

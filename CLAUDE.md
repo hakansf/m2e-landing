@@ -47,6 +47,7 @@ Marketing site for **Memes to an End (M2E)**. Designed and first built by Will C
 - **Navigation:** Services, About, Press, plus the "Start a conversation" button. There is deliberately no separate "Contact" nav item (the button goes there); the footer still lists Contact.
 - **Hero line:** the headline runs into the line below it: "From LOLs to LLMs…" / "…we harness the power of online culture…".
 - **Manifesto link:** "Read our manifesto" lands on the Meme definition at the top of the About page (`#manifesto`).
+- **Meme definition (About):** a dark block set like the logo: "MEME" in white with "S TO AN END" faded grey (the focus is on MEME), then "noun | (mēm, MEEM)" and the full dictionary sense with a cyan "1": "an idea, behavior, style, or usage that spreads from person to person within a culture". Only the first sense is shown, by choice.
 - **Spacing** was deliberately tightened; standard section padding is `--section-y`, short sections use `.section--tight`.
 
 ## Copy guardrails

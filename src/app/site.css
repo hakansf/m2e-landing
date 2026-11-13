@@ -2030,3 +2030,56 @@ p, li, blockquote, figcaption { text-wrap: pretty; }
 .definition { align-items: center; }
 .definition__def { margin: 0; }
 .manifesto-body { margin-top: clamp(32px, 3.6vw, 48px); padding-top: clamp(28px, 3vw, 40px); border-top: 1px solid var(--rule-light); }
+
+/* --------------------------------------------------------------------------
+   About: the Meme definition, set like the logo (MEME lit, "s to an end"
+   faded), then pronunciation and the dictionary sense with a cyan numeral
+   -------------------------------------------------------------------------- */
+.meme-def { background: #060809; }
+.meme-def::after { content: none; }           /* no dot texture behind the wordmark */
+.meme-word {
+  margin: 0;
+  display: flex;
+  align-items: stretch;
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: clamp(48px, 10vw, 150px);
+  line-height: 0.86;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+}
+.meme-word__lit { color: var(--paper); }
+.meme-word__dim { display: inline-flex; align-items: stretch; color: #3b4144; }
+.meme-word__stack {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0.04em;
+  font-size: 0.44em;
+  line-height: 0.92;
+}
+.meme-pron {
+  margin: clamp(14px, 1.6vw, 22px) 0 0;
+  font-size: clamp(22px, 2.6vw, 38px);
+  line-height: 1.2;
+  color: var(--paper);
+}
+.meme-pron em { font-style: italic; }
+.meme-pron__bar { margin: 0 0.35em; }
+.meme-senses { list-style: none; margin: clamp(32px, 4vw, 56px) 0 0; padding: 0; max-width: 34em; }
+.meme-senses li { display: flex; gap: 18px; align-items: flex-start; }
+.meme-senses__n {
+  flex: none;
+  font-family: var(--display);
+  font-size: clamp(48px, 4.4vw, 64px);
+  line-height: 0.82;
+  color: var(--cyan);
+}
+.meme-senses p {
+  margin: 0;
+  font-size: clamp(18px, 1.7vw, 24px);
+  line-height: 1.45;
+  color: var(--paper);
+}
+.page-hero + .meme-def { padding-top: calc(var(--section-y) * 0.6); border-top: 1px solid var(--rule-dark); }
